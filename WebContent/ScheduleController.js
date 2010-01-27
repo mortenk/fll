@@ -31,8 +31,8 @@ no.fll.ScheduleController = Ext.extend(Ext.Component, {
         grid.render(document.body);
     }, 
     
-    createSchedule : function(teams) {
-        var grid = new no.fll.ScheduleGrid(teams);
+    createSchedule : function(starttime, duration, teams) {
+        var grid = new no.fll.ScheduleGrid(starttime, duration, teams);
         grid.on('next', this.showActivities.createDelegate(this));
         grid.render(document.body);
     },

@@ -1,4 +1,4 @@
-package no.fll.web;
+package no.fll.schedule;
 
 public class Schedule {
 	private String kl;

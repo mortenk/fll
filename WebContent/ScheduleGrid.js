@@ -1,6 +1,6 @@
 Ext.namespace("no.fll");
 no.fll.ScheduleGrid = Ext.extend(Ext.grid.EditorGridPanel, {
-    constructor: function(teams, config) {
+    constructor: function(starttime, duration, teams, config) {
 		this.width = 350;
 		this.autoHeight = true;	
 		this.columns = [
@@ -10,7 +10,7 @@ no.fll.ScheduleGrid = Ext.extend(Ext.grid.EditorGridPanel, {
 		    ];
         this.store = new Ext.data.Store({
             proxy: new Ext.ux.DWRProxy(ScheduleService.createSchedule, function() {
-                return ['09.00', teams];
+                return [starttime, duration, teams];
             }),
             autoLoad: true,
             reader: new Ext.data.JsonReader({

@@ -1,4 +1,4 @@
-package no.fll.web;
+package no.fll.activity;
 
 
 public class ActivityService {

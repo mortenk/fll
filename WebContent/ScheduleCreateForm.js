@@ -40,7 +40,7 @@ no.fll.ScheduleCreateForm = Ext.extend(Ext.form.FormPanel, {
         		text: 'Opprett',
 	            scope: this,
 	            handler: function() {
-	        		this.fireEvent('create-schedule', this.getForm().getValues().teams);
+	        		this.fireEvent('create-schedule', this.getForm().getValues().starttime, this.getForm().getValues().duration, this.getForm().getValues().teams);
 	            }
 	        },{
 	            text: 'Clear',
