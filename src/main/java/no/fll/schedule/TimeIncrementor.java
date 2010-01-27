@@ -16,6 +16,8 @@ public class TimeIncrementor {
 	public String getNextValue() {
 		String nextValue = String.format("%02d:%02d", hour, min);
 		min += increment;
+		hour += min / 60;
+		min %= 60;
 		return nextValue;
 	}
 }
