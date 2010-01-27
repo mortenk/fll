@@ -8,10 +8,16 @@
         http://www.directwebremoting.org/schema/spring-dwr http://www.directwebremoting.org/schema/spring-dwr-2.0.xsd">
 
     <dwr:configuration>
+		<dwr:convert type="bean" class="no.fll.web.Activity" />
+		<dwr:convert type="bean" class="no.fll.web.Schedule" />
     </dwr:configuration>
 
 	<bean class="no.fll.web.ActivityService" autowire="byType">
         <dwr:remote javascript="ActivityService" />
+    </bean>
+
+	<bean class="no.fll.web.ScheduleService" autowire="byType">
+        <dwr:remote javascript="ScheduleService" />
     </bean>
 
 </beans>
