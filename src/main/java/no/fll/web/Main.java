@@ -9,7 +9,22 @@ import org.mortbay.jetty.webapp.WebAppContext;
 public class Main {
 
 	public static void main(String[] args) throws Exception {
-		createServer(8080).start();
+		int port = 8080;
+		for (int i=0; i<args.length; i++) {
+			if ("-port".equals(args[i])) {
+				if (i+1 < args.length) {
+					port = Integer.parseInt(args[i+1]);
+				} else {
+					System.out.println("Default http port is " + port);
+					return;
+				}
+			}
+			else if ("-help".equals(args[i])) {
+				System.out.println("Optional parameters:\n\t-port [http port]");
+				return;
+			}
+		}
+		createServer(port).start();
 	}
 
 	public static Server createServer(int port) {
