@@ -23,7 +23,7 @@ public class Main {
 	private static Handler createWebAppContext() {
 		WebAppContext webAppContext = new WebAppContext();
 		webAppContext.setContextPath("/");
-		String webAppRoot = "WebContent";
+		String webAppRoot = "src/main/webapp";
 		webAppContext.setWar(webAppRoot);
 		return webAppContext;
 	}
