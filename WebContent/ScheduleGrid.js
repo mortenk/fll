@@ -1,5 +1,5 @@
 Ext.namespace("no.fll");
-no.fll.ScheduleGrid = Ext.extend(Ext.grid.GridPanel, {
+no.fll.ScheduleGrid = Ext.extend(Ext.grid.EditorGridPanel, {
     constructor: function(teams, config) {
 		this.width = 350;
 		this.autoHeight = true;	

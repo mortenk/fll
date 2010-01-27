@@ -11,9 +11,30 @@ no.fll.ScheduleCreateForm = Ext.extend(Ext.form.FormPanel, {
         this.labelAlign = 'left';
         this.frame = true;
         this.items = [{
-                fieldLabel: "Antall lag",
-                name: 'teams',
-                width:190
+        	xtype: 'numberfield',
+            fieldLabel: "Antall lag",
+            name: 'teams',
+            value: 16,
+            width: 190,
+            allowBlank: false,
+            allowDecimals: false,
+            allowNegative: false
+        },{
+        	xtype: 'numberfield',
+        	fieldLabel: 'Rundetid',
+        	name: 'duration',
+            value: 6,
+            width: 190,
+            allowBlank: false,
+            allowDecimals: false,
+            allowNegative: false
+        },{
+        	xtype: 'timefield',
+        	fieldLabel: 'Starttid',
+        	name: 'starttime',
+        	format: 'H:i',
+        	value: '09:00',
+            width: 190
         }];
         this.buttons = [{
         		text: 'Opprett',

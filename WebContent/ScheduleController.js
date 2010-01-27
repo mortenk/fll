@@ -42,8 +42,8 @@ no.fll.ScheduleController = Ext.extend(Ext.Component, {
         form.reset();
     },
 
-    createForm : function(title) {
-        var form = new no.fll.ScheduleCreateForm({id: 'scheduleCreateForm', title: title});
+    createForm : function() {
+        var form = new no.fll.ScheduleCreateForm({id: 'scheduleCreateForm'});
         form.on('create-schedule', this.createSchedule.createDelegate(this));
         form.on('clear', this.clearForm.createDelegate(this));
         return form;
