@@ -1,4 +1,8 @@
 Ext.onReady(function() {
 	Ext.QuickTips.init();
-	new no.fll.Viewport();
+	try {
+		new no.fll.Viewport();
+	} catch (ex) {
+		alert(ex.msg);
+	}
 });

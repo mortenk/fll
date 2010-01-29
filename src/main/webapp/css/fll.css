@@ -1,0 +1,9 @@
+.new {
+    background-image: url(http://wiki.famfamfam.googlecode.com/hg/images/add.png) !important;
+}
+.save {
+    background-image: url(http://wiki.famfamfam.googlecode.com/hg/images/disk.png) !important;
+}
+.revert {
+    background-image: url(http://wiki.famfamfam.googlecode.com/hg/images/arrow_undo.png) !important;
+}
