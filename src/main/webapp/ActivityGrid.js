@@ -55,15 +55,8 @@ no.fll.ActivityGrid = Ext.extend(Ext.grid.EditorGridPanel, {
 		 		}
             }),
             autoLoad: true,
-            reader: new Ext.data.JsonReader({
-            	id: 'id'
-            }, [
-                {name: 'id'},
-                {name: 'activity'},
-                {name: 'duration'}
-            ]),
-            writer: new Ext.data.JsonWriter({
-            })
+            reader: new Ext.data.JsonReader({fields: no.fll.Activity}),
+            writer: new Ext.data.JsonWriter({})
         });
         this.tbar = [{
             text: 'Ny',
