@@ -8,8 +8,20 @@ no.fll.ScheduleGrid = Ext.extend(Ext.grid.EditorGridPanel, {
 			    {header: "Lag 2", width: 80, dataIndex: 'team2'}
 		    ];
         this.store = new Ext.data.Store({
-            proxy: new Ext.ux.DWRProxy(ScheduleService.createSchedule, function() {
-                return [starttime, duration, teams];
+        	autoSave: false,
+            proxy: new Ext.ux.data.DwrProxy({
+				// Defined by Ext.data.DataProxy
+		 		apiActionToHandlerMap : {
+		 			read : {
+		  				dwrFunction : ScheduleService.createSchedule,
+		 				// Define a custom function that passes the paging parameters to DWR.
+		 				getDwrArgsFunction : function(request) {
+            				return [starttime, duration, teams];
+		 				},
+		 				// The scope is set to "this" so that this store's paging parameter names can be accessed.
+		 				getDwrArgsScope : this
+		 			}
+		 		}
             }),
             autoLoad: true,
             reader: new Ext.data.JsonReader({
