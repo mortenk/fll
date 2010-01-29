@@ -7,12 +7,9 @@ Ext.namespace("no.fll");
  * @author morten.knudsen@vps.no
  */
 no.fll.ScheduleController = Ext.extend(Ext.Component, {
-    /*** default properties ***/
-
-
-    /*** constructor ***/
     constructor: function(config) {
 
+		this.plan = 1;
         this.addEvents(
             /**
              * @event create-schedule
@@ -24,17 +21,11 @@ no.fll.ScheduleController = Ext.extend(Ext.Component, {
         );
     },
 
-    /*** public methods ****/
-
-    showActivities : function() {
-    	var grid = new no.fll.ActivityGrid();
-        grid.render(document.body);
-    }, 
-    
     createSchedule : function(starttime, duration, teams) {
-        var grid = new no.fll.ScheduleGrid(starttime, duration, teams);
-        grid.on('next', this.showActivities.createDelegate(this));
-        grid.render(document.body);
+        var grid = new no.fll.ScheduleGrid(starttime, duration, teams, {title: 'Kjøreplan', closable: true});
+        this.mainPanel.add(grid);
+        this.mainPanel.setActiveTab(grid);
+        this.mainPanel.doLayout();
     },
 
     
@@ -42,7 +33,8 @@ no.fll.ScheduleController = Ext.extend(Ext.Component, {
         form.reset();
     },
 
-    createForm : function() {
+    createForm : function(mainPanel) {
+    	this.mainPanel = mainPanel;
         var form = new no.fll.ScheduleCreateForm({id: 'scheduleCreateForm'});
         form.on('create-schedule', this.createSchedule.createDelegate(this));
         form.on('clear', this.clearForm.createDelegate(this));

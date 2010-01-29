@@ -1,8 +1,7 @@
 Ext.namespace("no.fll");
 no.fll.ScheduleGrid = Ext.extend(Ext.grid.EditorGridPanel, {
     constructor: function(starttime, duration, teams, config) {
-		this.width = 350;
-		this.autoHeight = true;	
+		this.title = "Plan";
 		this.columns = [
 			    {header: "Kl", width: 80, dataIndex: 'kl'},
 			    {header: "Lag 1", width: 80, dataIndex: 'team1'},
@@ -21,13 +20,6 @@ no.fll.ScheduleGrid = Ext.extend(Ext.grid.EditorGridPanel, {
                 {name: 'team2'}
             ])
         });
-        this.buttons = [{
-        	text: 'Neste', 
-            scope: this,
-            handler: function() {
-                this.fireEvent('next');
-            }
-        }];
 		no.fll.ScheduleGrid.superclass.constructor.call(this, config);
 	}
 });

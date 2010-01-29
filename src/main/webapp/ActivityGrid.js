@@ -1,6 +1,6 @@
 Ext.namespace("no.fll");
 no.fll.ActivityGrid = Ext.extend(Ext.grid.EditorGridPanel, {
-    constructor: function(teams, config) {
+    constructor: function(config) {
 		this.width = 350;
 		this.autoHeight = true;	
 		this.columns = [{
@@ -40,8 +40,6 @@ no.fll.ActivityGrid = Ext.extend(Ext.grid.EditorGridPanel, {
         	handler: function() {
         		this.store.add([new Ext.data.Record({id: '4', activity: 'Tøys', duration: 15})]);
         	}.createDelegate(this)
-        },{
-        	text: 'Neste'
         }];
 		no.fll.ActivityGrid.superclass.constructor.call(this, config);
 	}
