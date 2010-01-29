@@ -18,7 +18,7 @@ no.fll.Application = Ext.extend(Ext.Panel, {
         });
 
 		this.leftPanel = new Ext.Panel({
-			title: 'Morten er snill',
+			title: 'FLL',
 			width: '205px',
 			region : "west", 
 			layout: "accordion",
