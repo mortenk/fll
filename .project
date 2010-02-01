@@ -15,6 +15,9 @@
     <buildCommand>
       <name>org.eclipse.wst.validation.validationbuilder</name>
     </buildCommand>
+    <buildCommand>
+      <name>org.eclipse.ajdt.core.ajbuilder</name>
+    </buildCommand>
   </buildSpec>
   <natures>
     <nature>org.eclipse.jem.workbench.JavaEMFNature</nature>
@@ -22,5 +25,6 @@
     <nature>org.eclipse.wst.common.project.facet.core.nature</nature>
     <nature>org.eclipse.jdt.core.javanature</nature>
     <nature>org.eclipse.wst.jsdt.core.jsNature</nature>
+    <nature>org.eclipse.ajdt.ui.ajnature</nature>
   </natures>
 </projectDescription>
