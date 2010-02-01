@@ -9,44 +9,34 @@ import org.mortbay.jetty.webapp.WebAppContext;
 public class Main {
 
 	public static void main(String[] args) throws Exception {
-		int port = 8080;
-		for (int i=0; i<args.length; i++) {
-			if ("-port".equals(args[i])) {
-				if (i+1 < args.length) {
-					port = Integer.parseInt(args[i+1]);
-				} else {
-					System.out.println("Default http port is " + port);
-					return;
-				}
-			}
-			else if ("-help".equals(args[i])) {
-				System.out.println("Optional parameters:\n\t-port [http port]");
-				return;
-			}
+		ConfigurationFactory configurationFactory = new ConfigurationFactory(args);
+		Configuration configuration = configurationFactory.getConfiguration();
+		if (configuration == null) {
+			return;
 		}
-		createServer(port).start();
+		createServer(configuration).start();
 	}
 
-	public static Server createServer(int port) {
+	public static Server createServer(Configuration configuration) {
 		Server server = new Server();
-		server.addConnector(createConnector(port));
-		server.setHandler(createWebAppContext());
+		server.addConnector(createConnector(configuration));
+		server.setHandler(createWebAppContext(configuration));
 		server.setStopAtShutdown(true);
 		return server;
 	}
 
-	private static Handler createWebAppContext() {
+	private static Handler createWebAppContext(Configuration configuration) {
 		WebAppContext webAppContext = new WebAppContext();
-		webAppContext.setContextPath("/");
+		webAppContext.setContextPath(configuration.getContextPath());
 		String webAppRoot = "src/main/webapp";
 		webAppContext.setWar(webAppRoot);
 		return webAppContext;
 	}
 
-	private static Connector createConnector(int port) {
+	private static Connector createConnector(Configuration configuration) {
 		Connector connector = new SelectChannelConnector();
-		connector.setPort(port);
-		connector.setHost("0.0.0.0");
+		connector.setPort(configuration.getPort());
+		connector.setHost(configuration.getHost());
 		return connector;
 	}
 }
