@@ -64,13 +64,7 @@
 		<priority value="WARN" />
 	</category>
 	<category name="org.hibernate">
-		<priority value="INFO" />
-	</category>
-	<category name="org.hibernate.cfg.SettingsFactory">
-		<priority value="INFO" />
-	</category>
-	<category name="org.hibernate.cfg.HbmBinder">
-		<priority value="INFO" />
+		<priority value="DEBUG" />
 	</category>
 	<category name="com.mchange">
 		<priority value="INFO" />
