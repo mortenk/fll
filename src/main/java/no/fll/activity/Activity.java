@@ -54,4 +54,13 @@ public class Activity {
 	public void setDuration(int duration) {
 		this.duration = duration;
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof Activity) {
+			Activity activity = (Activity) obj;
+			return (this.id == activity.getId() && this.activity.equals(activity.getActivity()) && this.duration == activity.getDuration());
+		}
+		return super.equals(obj);
+	}
 }
