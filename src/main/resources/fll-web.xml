@@ -10,6 +10,7 @@
     <dwr:configuration>
 		<dwr:convert type="bean" class="no.fll.activity.Activity" />
 		<dwr:convert type="bean" class="no.fll.schedule.Schedule" />
+		<dwr:convert type="bean" class="no.fll.web.JsonReaderResponse" />
     </dwr:configuration>
 
 	<bean class="no.fll.schedule.RandomScheduleFactory"/>

@@ -3,11 +3,31 @@
         xmlns="http://www.springframework.org/schema/beans"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+        xmlns:tx="http://www.springframework.org/schema/tx"
+        xmlns:aop="http://www.springframework.org/schema/aop"
         xsi:schemaLocation="
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
-        http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd">
+        http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
 
 	<jdbc:embedded-database id="dataSource"/>
+
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<!-- the transactional semantics... -->
+		<tx:attributes>
+			<!-- all methods starting with 'get' are read-only -->
+			<tx:method name="get*" read-only="true" />
+			<!-- other methods use the default transaction settings (see below) -->
+			<tx:method name="*" />
+		</tx:attributes>
+	</tx:advice>
+
+	<aop:config>
+		<aop:pointcut id="fooServiceOperation"
+			expression="execution(* no.fll.*.*Service.*(..))" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="fooServiceOperation" />
+	</aop:config>
 
 	<bean id="hibernateTemplate"
 		class="org.springframework.orm.hibernate3.HibernateTemplate">
