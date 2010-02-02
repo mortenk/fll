@@ -30,6 +30,7 @@ public class Main {
 		webAppContext.setContextPath(configuration.getContextPath());
 		String webAppRoot = "src/main/webapp";
 		webAppContext.setWar(webAppRoot);
+		webAppContext.setDefaultsDescriptor("./src/main/webapp/webdefault.xml");
 		return webAppContext;
 	}
 
