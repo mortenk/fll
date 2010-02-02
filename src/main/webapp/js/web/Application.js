@@ -28,7 +28,10 @@ no.fll.web.Application = Ext.extend(Ext.Panel, {
 		        animate: true,
 		        activeOnTop: true
 		    },
-		    items : new no.fll.schedule.ScheduleController().createForm(this.mainPanel)
+		    items : [
+		        new no.fll.schedule.ScheduleController().createForm(this.mainPanel),
+		        new no.fll.plan.PlanController().createForm(this.mainPanel)
+		    ]
 		});
 
         this.items = [this.leftPanel, this.mainPanel];
