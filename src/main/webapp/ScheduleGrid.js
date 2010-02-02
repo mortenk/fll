@@ -1,7 +1,6 @@
 Ext.namespace("no.fll");
 no.fll.ScheduleGrid = Ext.extend(Ext.grid.EditorGridPanel, {
-    constructor: function(starttime, duration, teams, config) {
-		this.title = "Plan";
+    constructor: function(config) {
 		this.columns = [
 			    {header: "Kl", width: 80, dataIndex: 'kl'},
 			    {header: "Lag 1", width: 80, dataIndex: 'team1'},
@@ -13,24 +12,17 @@ no.fll.ScheduleGrid = Ext.extend(Ext.grid.EditorGridPanel, {
 				// Defined by Ext.data.DataProxy
 		 		apiActionToHandlerMap : {
 		 			read : {
-		  				dwrFunction : ScheduleService.createSchedule,
-		 				// Define a custom function that passes the paging parameters to DWR.
-		 				getDwrArgsFunction : function(request) {
-            				return [starttime, duration, teams];
-		 				},
-		 				// The scope is set to "this" so that this store's paging parameter names can be accessed.
-		 				getDwrArgsScope : this
+		  				dwrFunction : ScheduleService.getSchedule
 		 			}
 		 		}
             }),
             autoLoad: true,
-            reader: new Ext.data.JsonReader({
-            	id: 'kl'
-            }, [
-                {name: 'kl'},
-                {name: 'team1'},
-                {name: 'team2'}
-            ])
+        	reader: new Ext.data.JsonReader({
+        		root : 'objectsToConvertToRecords',
+        		successProperty: 'success', 
+        		fields: no.fll.Schedule,
+        		idProperty: 'id'
+        	})
         });
 		no.fll.ScheduleGrid.superclass.constructor.call(this, config);
 	}

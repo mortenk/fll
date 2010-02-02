@@ -9,7 +9,6 @@ Ext.namespace("no.fll");
 no.fll.ScheduleController = Ext.extend(Ext.Component, {
     constructor: function(config) {
 
-		this.plan = 1;
         this.addEvents(
             /**
              * @event create-schedule
@@ -22,9 +21,14 @@ no.fll.ScheduleController = Ext.extend(Ext.Component, {
     },
 
     createSchedule : function(starttime, duration, teams) {
-        var grid = new no.fll.ScheduleGrid(starttime, duration, teams, {title: 'Kjøreplan', closable: true});
-        this.mainPanel.add(grid);
-        this.mainPanel.setActiveTab(grid);
+        this.mainPanel.setActiveTab(this.grid);
+        ScheduleService.generateSchedule(starttime, duration, teams, function(schedule) {
+        	var records = new Array();
+        	for (var i in schedule) {
+        		records[i] = new no.fll.Schedule(schedule[i]);
+        	}
+        	this.grid.store.add(records);
+        }.createDelegate(this));
         this.mainPanel.doLayout();
     },
 
@@ -35,6 +39,8 @@ no.fll.ScheduleController = Ext.extend(Ext.Component, {
 
     createForm : function(mainPanel) {
     	this.mainPanel = mainPanel;
+		this.grid = new no.fll.ScheduleGrid({title: 'Kjøreplan', closable: true});
+        this.mainPanel.add(this.grid);
         var form = new no.fll.ScheduleCreateForm({id: 'scheduleCreateForm'});
         form.on('create-schedule', this.createSchedule.createDelegate(this));
         form.on('clear', this.clearForm.createDelegate(this));

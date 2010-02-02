@@ -4,13 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.hibernate3.HibernateTemplate;
+
+import no.fll.web.JsonReaderResponse;
 
 public class ScheduleService {
 
 	@Autowired
 	private ScheduleFactory scheduleFactory;
+	@Autowired
+	private HibernateTemplate hibernateTemplate;
 	
-	public List<Schedule> createSchedule(String startTime, int increment, int teams) {
+	public JsonReaderResponse<Schedule> getSchedule() {
+		return new JsonReaderResponse(hibernateTemplate.loadAll(Schedule.class));
+	}
+	
+	public List<Schedule> generateSchedule(String startTime, int increment, int teams) {
 		List<Integer> teamList = scheduleFactory.createTeamList(teams);
 		List<Schedule> schedules = new ArrayList<Schedule>();
 		TimeIncrementor timeIncrementor = new TimeIncrementor(startTime, increment);

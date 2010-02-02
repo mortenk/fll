@@ -1,8 +1,23 @@
 package no.fll.schedule;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "SCHEDULE")
 public class Schedule {
+
+	@Id
+	@Column(name = "kl")
 	private String kl;
-	private String team1, team2;
+	
+	@Column(name = "team1")
+	private String team1;
+	
+	@Column(name = "team2")
+	private String team2;
 	
 	public Schedule(String kl, String team1, String team2) {
 		super();
@@ -10,7 +25,7 @@ public class Schedule {
 		this.team1 = team1;
 		this.team2 = team2;
 	}
-
+	
 	public String getKl() {
 		return kl;
 	}
