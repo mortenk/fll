@@ -5,7 +5,6 @@
 <!--  Log4j Configuration                                                  -->
 <!--                                                                       -->
 <!-- ===================================================================== -->
-<!-- $Id: log4j.xml 767 2008-05-02 16:00:22Z vsxxbel $ -->
 <!--
 	| For more configuration infromation and examples see the Jakarta Log4j
 	| owebsite: http://jakarta.apache.org/log4j
@@ -18,66 +17,29 @@
 	<!-- ============================== -->
 	<appender name="SYSOUT_CONSOLE" class="org.apache.log4j.ConsoleAppender">
 		<param name="Target" value="System.out" />
-		<param name="Threshold" value="TRACE" />
 		<layout class="org.apache.log4j.PatternLayout">
 			<!-- The default pattern: Date Priority [Category] Message\n -->
 			<param name="ConversionPattern"
 				value="%d{dd.MM.yyyy HH:mm:ss} [%p] [%c] [%x]: %m%n" />
 		</layout>
-       <filter class="org.apache.log4j.varia.LevelRangeFilter">
-            <param name="LevelMin" value="trace"/>
-            <param name="LevelMax" value="info"/>
-            <param name="AcceptOnMatch" value="false"/>
-       </filter>
-    </appender>
-	<appender name="SYSERR_CONSOLE" class="org.apache.log4j.ConsoleAppender">
-		<param name="Target" value="System.err" />
-		<param name="Threshold" value="TRACE" />
-		<layout class="org.apache.log4j.PatternLayout">
-			<!-- The default pattern: Date Priority [Category] Message\n -->
-			<param name="ConversionPattern"
-				value="%d{dd.MM.yyyy HH:mm:ss} [%p] [%c] [%x]: %m%n" />
-		</layout>
-       <filter class="org.apache.log4j.varia.LevelRangeFilter">
-            <param name="LevelMin" value="warn"/>
-            <param name="LevelMax" value="fatal"/>
-            <param name="AcceptOnMatch" value="false"/>
-       </filter>
     </appender>
 	<!-- ================ -->
 	<!-- Limit categories -->
 	<!-- ================ -->
-	<!-- Limit the org.apache category to INFO as its DEBUG is verbose -->
 	<category name="org.mortbay">
-		<priority value="INFO" />
-	</category>
-	<category name="org.apache">
-		<priority value="INFO" />
-	</category>
-	<category name="httpclient.wire">
-		<priority value="INFO" />
+		<priority value="WARN" />
 	</category>
 	<category name="org.springframework">
-		<priority value="DEBUG" />
+		<priority value="WARN" />
 	</category>
 	<category name="org.directwebremoting">
 		<priority value="WARN" />
 	</category>
 	<category name="org.hibernate">
-		<priority value="DEBUG" />
-	</category>
-	<category name="com.mchange">
-		<priority value="INFO" />
-	</category>
-	<!-- Limit the org.jgroups category to WARN as its INFO is verbose -->
-	<category name="org.jgroups">
-		<priority value="WARN" />
-	</category>
-	<category name="com.tst">
 		<priority value="WARN" />
 	</category>
 	<category name="org.hsqldb">
-		<priority value="DEBUG" />
+		<priority value="WARN" />
 	</category>
 
 	<!-- ======================= -->
