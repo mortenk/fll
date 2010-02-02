@@ -18,8 +18,9 @@ no.fll.web.Application = Ext.extend(Ext.Panel, {
         });
 
 		this.leftPanel = new Ext.Panel({
+			split: true,
 			title: 'FLL',
-			width: '205px',
+			width: '250px',
 			region : "west", 
 			layout: "accordion",
 			layoutConfig: {

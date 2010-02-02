@@ -3,19 +3,18 @@ no.fll.schedule.ScheduleCreateForm = Ext.extend(Ext.form.FormPanel, {
     constructor: function(config) {
 
 		config = config || {};
-        this.title = 'Opprett kjøreplan';
         this.bodyStyle = 'padding:5px 5px 0';
         this.width = 350;
-        this.defaults = {width: 230};
+        this.defaults = {width: 130};
         this.defaultType = 'textfield';
         this.labelAlign = 'left';
+        this.labelWidth = 80;
         this.frame = true;
         this.items = [{
         	xtype: 'numberfield',
             fieldLabel: "Antall lag",
             name: 'teams',
             value: 16,
-            width: 190,
             allowBlank: false,
             allowDecimals: false,
             allowNegative: false
@@ -24,7 +23,6 @@ no.fll.schedule.ScheduleCreateForm = Ext.extend(Ext.form.FormPanel, {
         	fieldLabel: 'Rundetid',
         	name: 'duration',
             value: 6,
-            width: 190,
             allowBlank: false,
             allowDecimals: false,
             allowNegative: false
@@ -33,8 +31,7 @@ no.fll.schedule.ScheduleCreateForm = Ext.extend(Ext.form.FormPanel, {
         	fieldLabel: 'Starttid',
         	name: 'starttime',
         	format: 'H:i',
-        	value: '09:00',
-            width: 190
+        	value: '09:00'
         }];
         this.buttons = [{
         		text: 'Opprett',

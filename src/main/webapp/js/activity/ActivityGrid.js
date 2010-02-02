@@ -1,7 +1,7 @@
 Ext.namespace("no.fll.activity");
 no.fll.activity.ActivityGrid = Ext.extend(Ext.grid.EditorGridPanel, {
     constructor: function(config) {
-		this.width = 350;
+		this.autoWidth = true;
 		this.autoHeight = true;	
 		this.columns = [{
 			header: "Aktivitet", 
