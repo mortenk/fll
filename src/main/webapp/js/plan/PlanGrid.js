@@ -8,7 +8,7 @@ no.fll.plan.PlanGrid = Ext.extend(Ext.grid.EditorGridPanel, {
 			editor: new Ext.form.TextField({
 	            allowBlank: false
 	        }),
-			dataIndex: 'kl'
+			dataIndex: 'time'
 		},{
 			header: "Lag", 
 			width: 80, 
@@ -25,6 +25,7 @@ no.fll.plan.PlanGrid = Ext.extend(Ext.grid.EditorGridPanel, {
 		}];
         this.store = new Ext.data.GroupingStore({
         	groupField: 'team',
+        	sortInfo:{field: 'time', direction: "ASC"},
             autoLoad: true,
         	autoSave: false,
             proxy: new Ext.ux.data.DwrProxy({

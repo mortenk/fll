@@ -1,14 +1,14 @@
 var PlanService = {};
 PlanService.dummyData = {
 	objectsToConvertToRecords: [ 
-		{id: 1, kl: '09.00', team: 'Lag 1', activity: 'Pit'},
-		{id: 2, kl: '09.06', team: 'Lag 1', activity: 'Ring'},
-		{id: 3, kl: '09.20', team: 'Lag 1', activity: 'Teori'},
-		{id: 4, kl: '10.00', team: 'Lag 1', activity: 'Teknisk'},
-		{id: 5, kl: '09.06', team: 'Lag 2', activity: 'Pit'},
-		{id: 6, kl: '09.12', team: 'Lag 2', activity: 'Ring'},
-		{id: 7, kl: '10.20', team: 'Lag 2', activity: 'Teori'},
-		{id: 8, kl: '11.00', team: 'Lag 2', activity: 'Teknisk'}
+		{id: 1, time: '09.00', team: 'Lag 1', activity: 'Pit'},
+		{id: 2, time: '09.06', team: 'Lag 1', activity: 'Ring'},
+		{id: 3, time: '09.20', team: 'Lag 1', activity: 'Teori'},
+		{id: 4, time: '10.00', team: 'Lag 1', activity: 'Teknisk'},
+		{id: 5, time: '09.06', team: 'Lag 2', activity: 'Pit'},
+		{id: 6, time: '09.12', team: 'Lag 2', activity: 'Ring'},
+		{id: 7, time: '10.20', team: 'Lag 2', activity: 'Teori'},
+		{id: 8, time: '11.00', team: 'Lag 2', activity: 'Teknisk'}
 	], 
 	success: true
 };

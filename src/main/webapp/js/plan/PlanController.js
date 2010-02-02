@@ -19,11 +19,11 @@ no.fll.plan.PlanController = Ext.extend(Ext.Component, {
         );
     },
 
-    createPlan : function(duration) {
+    createPlan : function(pitminutes) {
         this.mainPanel.setActiveTab(this.grid);
         PlanService.generatePlan(pitminutes, function(plan) {
         	var records = new Array();
-        	for (var i in schedule) {
+        	for (var i in plan) {
         		records[i] = new no.fll.plan.Plan(plan[i]);
         	}
         	this.grid.store.add(records);

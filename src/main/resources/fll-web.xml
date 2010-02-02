@@ -9,14 +9,20 @@
 
     <dwr:configuration>
 		<dwr:convert type="bean" class="no.fll.activity.Activity" />
+		<dwr:convert type="bean" class="no.fll.plan.Plan" />
 		<dwr:convert type="bean" class="no.fll.schedule.Schedule" />
 		<dwr:convert type="bean" class="no.fll.web.JsonReaderResponse" />
     </dwr:configuration>
 
 	<bean class="no.fll.schedule.RandomScheduleFactory"/>
+	<bean class="no.fll.plan.PlanFactoryImpl"/>
 	
 	<bean class="no.fll.activity.ActivityService" autowire="byType">
         <dwr:remote javascript="ActivityService" />
+    </bean>
+
+	<bean class="no.fll.plan.PlanService" autowire="byType">
+        <dwr:remote javascript="PlanService" />
     </bean>
 
 	<bean class="no.fll.schedule.ScheduleService" autowire="byType">
