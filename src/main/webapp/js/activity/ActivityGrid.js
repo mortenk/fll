@@ -1,5 +1,5 @@
-Ext.namespace("no.fll");
-no.fll.ActivityGrid = Ext.extend(Ext.grid.EditorGridPanel, {
+Ext.namespace("no.fll.activity");
+no.fll.activity.ActivityGrid = Ext.extend(Ext.grid.EditorGridPanel, {
     constructor: function(config) {
 		this.width = 350;
 		this.autoHeight = true;	
@@ -59,7 +59,7 @@ no.fll.ActivityGrid = Ext.extend(Ext.grid.EditorGridPanel, {
         	reader: new Ext.data.JsonReader({
         		root : 'objectsToConvertToRecords',
         		successProperty: 'success', 
-        		fields: no.fll.Activity,
+        		fields: no.fll.activity.Activity,
         		idProperty: 'id'
         	}),
             writer: new Ext.data.JsonWriter({})
@@ -70,7 +70,7 @@ no.fll.ActivityGrid = Ext.extend(Ext.grid.EditorGridPanel, {
             iconCls: 'new',
             scope: this,
             handler: function() {
-        		this.store.add(new no.fll.Activity({activity: 'Tøys', duration: 15}));
+        		this.store.add(new no.fll.activity.Activity({activity: 'Tøys', duration: 15}));
             }
         },{
             text: 'Lagre',
@@ -97,6 +97,6 @@ no.fll.ActivityGrid = Ext.extend(Ext.grid.EditorGridPanel, {
         		this.store.removeAll();
             }
         }];
-		no.fll.ActivityGrid.superclass.constructor.call(this, config);
+		no.fll.activity.ActivityGrid.superclass.constructor.call(this, config);
 	}
 });

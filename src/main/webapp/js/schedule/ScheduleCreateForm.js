@@ -1,5 +1,5 @@
-Ext.namespace("no.fll");
-no.fll.ScheduleCreateForm = Ext.extend(Ext.form.FormPanel, {
+Ext.namespace("no.fll.schedule");
+no.fll.schedule.ScheduleCreateForm = Ext.extend(Ext.form.FormPanel, {
     constructor: function(config) {
 
 		config = config || {};
@@ -49,7 +49,7 @@ no.fll.ScheduleCreateForm = Ext.extend(Ext.form.FormPanel, {
 	        		this.fireEvent('clear', this.getForm());
 	            }
 	        }];
-        no.fll.ScheduleCreateForm.superclass.constructor.call(this, config);
+        no.fll.schedule.ScheduleCreateForm.superclass.constructor.call(this, config);
 	}
 });
 

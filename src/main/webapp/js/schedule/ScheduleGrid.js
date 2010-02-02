@@ -1,5 +1,5 @@
-Ext.namespace("no.fll");
-no.fll.ScheduleGrid = Ext.extend(Ext.grid.EditorGridPanel, {
+Ext.namespace("no.fll.schedule");
+no.fll.schedule.ScheduleGrid = Ext.extend(Ext.grid.EditorGridPanel, {
     constructor: function(config) {
 		this.columns = [
 			    {header: "Kl", width: 80, dataIndex: 'kl'},
@@ -26,7 +26,7 @@ no.fll.ScheduleGrid = Ext.extend(Ext.grid.EditorGridPanel, {
         	reader: new Ext.data.JsonReader({
         		root : 'objectsToConvertToRecords',
         		successProperty: 'success', 
-        		fields: no.fll.Schedule,
+        		fields: no.fll.schedule.Schedule,
         		idProperty: 'kl'
         	}),
             writer: new Ext.data.JsonWriter({})
@@ -56,6 +56,6 @@ no.fll.ScheduleGrid = Ext.extend(Ext.grid.EditorGridPanel, {
         		this.store.removeAll();
             }
         }];
-		no.fll.ScheduleGrid.superclass.constructor.call(this, config);
+		no.fll.schedule.ScheduleGrid.superclass.constructor.call(this, config);
 	}
 });

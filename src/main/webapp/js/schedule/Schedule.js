@@ -1,5 +1,5 @@
-Ext.namespace("no.fll");
-no.fll.Schedule = Ext.data.Record.create([
+Ext.namespace("no.fll.schedule");
+no.fll.schedule.Schedule = Ext.data.Record.create([
 	{name: 'kl'}, 
 	{name: 'team1'},
 	{name: 'team2'}

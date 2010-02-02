@@ -1,5 +1,5 @@
-Ext.namespace("no.fll");
-no.fll.Activity = Ext.data.Record.create([
+Ext.namespace("no.fll.activity");
+no.fll.activity.Activity = Ext.data.Record.create([
 	{name: 'id'}, 
 	{name: 'activity'}, 
 	{name: 'duration'}

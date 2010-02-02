@@ -1,4 +1,4 @@
-Ext.namespace("no.fll");
+Ext.namespace("no.fll.schedule");
 /**
  * Controller for FLL schedules.
  *
@@ -6,7 +6,7 @@ Ext.namespace("no.fll");
  * @extends Ext.Component
  * @author morten.knudsen@vps.no
  */
-no.fll.ScheduleController = Ext.extend(Ext.Component, {
+no.fll.schedule.ScheduleController = Ext.extend(Ext.Component, {
     constructor: function(config) {
 
         this.addEvents(
@@ -25,7 +25,7 @@ no.fll.ScheduleController = Ext.extend(Ext.Component, {
         ScheduleService.generateSchedule(starttime, duration, teams, function(schedule) {
         	var records = new Array();
         	for (var i in schedule) {
-        		records[i] = new no.fll.Schedule(schedule[i]);
+        		records[i] = new no.fll.schedule.Schedule(schedule[i]);
         	}
         	this.grid.store.add(records);
         }.createDelegate(this));
@@ -39,9 +39,9 @@ no.fll.ScheduleController = Ext.extend(Ext.Component, {
 
     createForm : function(mainPanel) {
     	this.mainPanel = mainPanel;
-		this.grid = new no.fll.ScheduleGrid({title: 'Kjøreplan', closable: true});
+		this.grid = new no.fll.schedule.ScheduleGrid({title: 'Kjøreplan', closable: true});
         this.mainPanel.add(this.grid);
-        var form = new no.fll.ScheduleCreateForm({id: 'scheduleCreateForm'});
+        var form = new no.fll.schedule.ScheduleCreateForm({id: 'scheduleCreateForm'});
         form.on('create-schedule', this.createSchedule.createDelegate(this));
         form.on('clear', this.clearForm.createDelegate(this));
         return form;

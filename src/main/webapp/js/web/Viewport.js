@@ -1,11 +1,11 @@
-Ext.namespace("no.fll");
+Ext.namespace("no.fll.web");
 
-no.fll.Viewport = Ext.extend(Ext.Viewport, {
+no.fll.web.Viewport = Ext.extend(Ext.Viewport, {
 
     constructor: function() {
 		this.layout = "fit";
-        this.items = new no.fll.Application();
-        no.fll.Viewport.superclass.constructor.call(this);
+        this.items = new no.fll.web.Application();
+        no.fll.web.Viewport.superclass.constructor.call(this);
     }
 
 });

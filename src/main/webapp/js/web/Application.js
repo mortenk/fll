@@ -1,6 +1,6 @@
-Ext.namespace("no.fll");
+Ext.namespace("no.fll.web");
 
-no.fll.Application = Ext.extend(Ext.Panel, {
+no.fll.web.Application = Ext.extend(Ext.Panel, {
 	constructor: function(config) {
 		config = config || {};
 
@@ -14,7 +14,7 @@ no.fll.Application = Ext.extend(Ext.Panel, {
             defaults: {
                 closable:false
             }, 
-            items: new no.fll.ActivityGrid({title: 'Aktiviteter', closable: false})
+            items: new no.fll.activity.ActivityGrid({title: 'Aktiviteter', closable: false})
         });
 
 		this.leftPanel = new Ext.Panel({
@@ -27,12 +27,12 @@ no.fll.Application = Ext.extend(Ext.Panel, {
 		        animate: true,
 		        activeOnTop: true
 		    },
-		    items : new no.fll.ScheduleController().createForm(this.mainPanel)
+		    items : new no.fll.schedule.ScheduleController().createForm(this.mainPanel)
 		});
 
         this.items = [this.leftPanel, this.mainPanel];
         
-        no.fll.Application.superclass.constructor.call(this, config);
+        no.fll.web.Application.superclass.constructor.call(this, config);
 
     }
 });
