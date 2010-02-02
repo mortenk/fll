@@ -19,7 +19,7 @@ public class ActivityService {
 
 	public JsonReaderResponse<Activity> createActivity(List<Activity> activities) {
 		hibernateTemplate.saveOrUpdateAll(activities);
-		return getActivities();
+		return new JsonReaderResponse(activities);
 	}
 
 	public JsonReaderResponse<Activity> updateActivity(List<Activity> oldValues, List<Activity> newValues) {
@@ -28,6 +28,6 @@ public class ActivityService {
 
 	public JsonReaderResponse<Activity> deleteActivity(List<Activity> activities) {
 		hibernateTemplate.deleteAll(activities);
-		return getActivities();
+		return new JsonReaderResponse(activities);
 	}
 }

@@ -64,9 +64,6 @@ no.fll.ActivityGrid = Ext.extend(Ext.grid.EditorGridPanel, {
         	}),
             writer: new Ext.data.JsonWriter({})
         });
-        proxy.addListener('write', function() {
-        				this.load();
-                    },this.store);
         this.tbar = [{
             text: 'Ny',
             tooltip: 'Ny aktivitet',
