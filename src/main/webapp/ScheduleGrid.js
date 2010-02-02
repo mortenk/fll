@@ -13,6 +13,9 @@ no.fll.ScheduleGrid = Ext.extend(Ext.grid.EditorGridPanel, {
 		 		apiActionToHandlerMap : {
 		 			read : {
 		  				dwrFunction : ScheduleService.getSchedule
+		 			},
+		 			create : {
+		  				dwrFunction : ScheduleService.createSchedule
 		 			}
 		 		}
             }),
@@ -21,9 +24,27 @@ no.fll.ScheduleGrid = Ext.extend(Ext.grid.EditorGridPanel, {
         		root : 'objectsToConvertToRecords',
         		successProperty: 'success', 
         		fields: no.fll.Schedule,
-        		idProperty: 'id'
-        	})
+        		idProperty: 'kl'
+        	}),
+            writer: new Ext.data.JsonWriter({})
         });
+        this.tbar = [{
+            text: 'Lagre',
+            tooltip: 'Lagrer kjøreplan',
+            iconCls: 'save',
+            scope: this,
+            handler: function() {
+    			this.store.save();
+            }
+        },{
+            text: 'Angre',
+            tooltip: 'Tilbakestiller til siste lagring',
+            iconCls: 'revert',
+            scope: this,
+            handler: function() {
+        		this.store.reload();
+            }
+        }];
 		no.fll.ScheduleGrid.superclass.constructor.call(this, config);
 	}
 });

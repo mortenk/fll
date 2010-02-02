@@ -19,6 +19,8 @@ public class Schedule {
 	@Column(name = "team2")
 	private String team2;
 	
+	public Schedule() {	}
+
 	public Schedule(String kl, String team1, String team2) {
 		super();
 		this.kl = kl;
