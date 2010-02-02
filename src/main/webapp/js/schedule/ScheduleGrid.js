@@ -7,9 +7,9 @@ no.fll.schedule.ScheduleGrid = Ext.extend(Ext.grid.EditorGridPanel, {
 			    {header: "Lag 2", width: 80, dataIndex: 'team2'}
 		    ];
         this.store = new Ext.data.Store({
+            autoLoad: true,
         	autoSave: false,
             proxy: new Ext.ux.data.DwrProxy({
-				// Defined by Ext.data.DataProxy
 		 		apiActionToHandlerMap : {
 		 			read : {
 		  				dwrFunction : ScheduleService.getSchedule
@@ -22,10 +22,8 @@ no.fll.schedule.ScheduleGrid = Ext.extend(Ext.grid.EditorGridPanel, {
 		 			}
 		 		}
             }),
-            autoLoad: true,
         	reader: new Ext.data.JsonReader({
         		root : 'objectsToConvertToRecords',
-        		successProperty: 'success', 
         		fields: no.fll.schedule.Schedule,
         		idProperty: 'kl'
         	}),

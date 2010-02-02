@@ -22,45 +22,28 @@ no.fll.activity.ActivityGrid = Ext.extend(Ext.grid.EditorGridPanel, {
             }),
 			dataIndex: 'duration'
 		}];
-        var proxy = new Ext.ux.data.DwrProxy({
-			// Defined by Ext.data.DataProxy
-	 		apiActionToHandlerMap : {
-	 			read : {
-	  				dwrFunction : ActivityService.getActivities,
-	 				// Define a custom function that passes the paging parameters to DWR.
-	 				getDwrArgsFunction : function(request) {
-	 					return [];
-	 				},
-	 				// The scope is set to "this" so that this store's paging parameter names can be accessed.
-	 				getDwrArgsScope : this
-	 			},
-	 			// These aren't needed if only doing reading.
-	 			create : {
-	 				// Use the default function which will set the DWR args to an array of all the objects to create.
-	 				dwrFunction : ActivityService.createActivity
-	 			}, 
-	 			update : {
-	 				dwrFunction : ActivityService.updateActivity
-	 			}, 
-	 			destroy : {
-	 				dwrFunction : ActivityService.deleteActivity,
-	 				// Define a custom function to pass a login and password, in addition to the objects to delete.
-	 				getDwrArgsFunction : function(request, recordDataArray) {
-	 					return [recordDataArray];
-	 				},
-	 				getDwrArgsScope : this
-	 			}
-	 		}
-        });
         this.store = new Ext.data.Store({
         	autoSave: false,
             autoLoad: true,
-            proxy: proxy,
+            proxy: new Ext.ux.data.DwrProxy({
+    	 		apiActionToHandlerMap : {
+    	 			read : {
+    	  				dwrFunction : ActivityService.getActivities
+    	 			},
+    	 			create : {
+    	 				dwrFunction : ActivityService.createActivity
+    	 			}, 
+    	 			update : {
+    	 				dwrFunction : ActivityService.updateActivity
+    	 			}, 
+    	 			destroy : {
+    	 				dwrFunction : ActivityService.deleteActivity
+    	 			}
+    	 		}
+            }),
         	reader: new Ext.data.JsonReader({
         		root : 'objectsToConvertToRecords',
-        		successProperty: 'success', 
-        		fields: no.fll.activity.Activity,
-        		idProperty: 'id'
+        		fields: no.fll.activity.Activity
         	}),
             writer: new Ext.data.JsonWriter({})
         });
