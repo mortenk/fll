@@ -16,6 +16,9 @@ no.fll.ScheduleGrid = Ext.extend(Ext.grid.EditorGridPanel, {
 		 			},
 		 			create : {
 		  				dwrFunction : ScheduleService.createSchedule
+		 			},
+		 			destroy : {
+		  				dwrFunction : ScheduleService.deleteSchedule
 		 			}
 		 		}
             }),
@@ -43,6 +46,14 @@ no.fll.ScheduleGrid = Ext.extend(Ext.grid.EditorGridPanel, {
             scope: this,
             handler: function() {
         		this.store.reload();
+            }
+        },{
+            text: 'Slett',
+            tooltip: 'Sletter hele kjøreplanen',
+            iconCls: 'delete',
+            scope: this,
+            handler: function() {
+        		this.store.removeAll();
             }
         }];
 		no.fll.ScheduleGrid.superclass.constructor.call(this, config);

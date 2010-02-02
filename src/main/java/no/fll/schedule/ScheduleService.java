@@ -21,7 +21,12 @@ public class ScheduleService {
 	
 	public JsonReaderResponse<Schedule> createSchedule(List<Schedule> schedules) {
 		hibernateTemplate.saveOrUpdateAll(schedules);
-		return getSchedule();
+		return new JsonReaderResponse(schedules);
+	}
+
+	public JsonReaderResponse<Schedule> deleteSchedule(List<Schedule> schedules) {
+		hibernateTemplate.deleteAll(schedules);
+		return new JsonReaderResponse(schedules);
 	}
 
 	public List<Schedule> generateSchedule(String startTime, int increment, int teams) {

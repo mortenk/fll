@@ -7,3 +7,6 @@
 .revert {
     background-image: url(http://wiki.famfamfam.googlecode.com/hg/images/arrow_undo.png) !important;
 }
+.delete {
+    background-image: url(http://wiki.famfamfam.googlecode.com/hg/images/bin.png) !important;
+}

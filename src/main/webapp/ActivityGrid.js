@@ -91,6 +91,14 @@ no.fll.ActivityGrid = Ext.extend(Ext.grid.EditorGridPanel, {
             handler: function() {
         		this.store.reload();
             }
+        },{
+            text: 'Slett',
+            tooltip: 'Sletter alle aktiviteter',
+            iconCls: 'delete',
+            scope: this,
+            handler: function() {
+        		this.store.removeAll();
+            }
         }];
 		no.fll.ActivityGrid.superclass.constructor.call(this, config);
 	}
