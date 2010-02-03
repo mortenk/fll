@@ -75,7 +75,7 @@ public class BruteForcePlanFactory implements PlanFactory {
 		while (teams.size() < team.getId())
 			teams.add(null);
 		if (teams.get(team.getId()-1) != null)
-			return teams.get(team.getId());
+			return teams.get(team.getId()-1);
 		teams.set(team.getId()-1, team);
 		return team;
 	}
