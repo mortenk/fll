@@ -29,6 +29,6 @@ public class ActivitySchedule {
 	}
 
 	public boolean isFree(Integer minute) {
-		return schedule.containsKey(minute);
+		return !schedule.containsKey(minute);
 	}
 }
