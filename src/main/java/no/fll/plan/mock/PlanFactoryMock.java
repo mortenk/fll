@@ -1,13 +1,16 @@
-package no.fll.plan;
+package no.fll.plan.mock;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import no.fll.plan.Plan;
+import no.fll.plan.PlanFactory;
 
-public class PlanFactoryImpl implements PlanFactory {
+
+public class PlanFactoryMock implements PlanFactory {
 
 	@Override
-	public List<Plan> generatePlan() {
+	public List<Plan> generatePlan(String startTime, String endTime, int pitTime) {
 		List<Plan> plan = new ArrayList<Plan>();
 		plan.add(new Plan(1, "09.00","Lag 1","Pit"));
 		plan.add(new Plan(2, "09.06","Lag 1","Ring"));

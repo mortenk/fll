@@ -12,7 +12,7 @@ PlanService.dummyData = {
 	], 
 	success: true
 };
-PlanService.generatePlan = function(startTime, duration, teams, callback) {
+PlanService.generatePlan = function(startTime, endTime, pitTime, callback) {
 	callback(PlanService.dummyData);
 };
 PlanService.getPlan = function(callback) {

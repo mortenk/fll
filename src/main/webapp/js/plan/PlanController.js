@@ -19,9 +19,9 @@ no.fll.plan.PlanController = Ext.extend(Ext.Component, {
         );
     },
 
-    createPlan : function(pitminutes) {
+    createPlan : function(startTime, endTime, pitTime) {
         this.mainPanel.setActiveTab(this.grid);
-        PlanService.generatePlan(pitminutes, function(plan) {
+        PlanService.generatePlan(startTime, endTime, pitTime, function(plan) {
         	var records = new Array();
         	for (var i in plan) {
         		records[i] = new no.fll.plan.Plan(plan[i]);

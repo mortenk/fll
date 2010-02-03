@@ -32,8 +32,8 @@ public class PlanService {
 		return new JsonReaderResponse(plan);
 	}
 
-	public List<Plan> generatePlan(int pitminutes) {
-		List<Plan> plan = planFactory.generatePlan();
+	public List<Plan> generatePlan(String startTime, String endTime, int pitTime) {
+		List<Plan> plan = planFactory.generatePlan(startTime, endTime, pitTime);
 		return plan;
 	}
 
