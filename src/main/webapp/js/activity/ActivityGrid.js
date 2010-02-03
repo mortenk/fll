@@ -4,6 +4,11 @@ no.fll.activity.ActivityGrid = Ext.extend(Ext.grid.EditorGridPanel, {
 		this.autoWidth = true;
 		this.autoHeight = true;	
 		this.columns = [{
+			header: "Id", 
+			width: 20, 
+			sortable: true, 
+			dataIndex: 'id'
+		},{
 			header: "Aktivitet", 
 			width: 80, 
 			sortable: true, 
