@@ -14,7 +14,7 @@ public class Plan {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "PLAN_ID")
-	private int id;
+	private Integer id;
 
 	@Column(name = "TIME")
 	private String time;
@@ -28,19 +28,18 @@ public class Plan {
 	
 	public Plan() { }
 	
-	public Plan(int id, String time, String team, String activity) {
+	public Plan(String time, String team, String activity) {
 		super();
-		this.id = id;
 		this.time = time;
 		this.team = team;
 		this.activity = activity;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

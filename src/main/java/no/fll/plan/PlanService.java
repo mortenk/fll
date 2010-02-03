@@ -23,8 +23,8 @@ public class PlanService {
 		return new JsonReaderResponse(plan);
 	}
 
-	public JsonReaderResponse<Plan> updatePlan(List<Plan> plan) {
-		return createPlan(plan);
+	public JsonReaderResponse<Plan> updatePlan(List<Plan> oldPlan, List<Plan> newPlan) {
+		return createPlan(newPlan);
 	}
 
 	public JsonReaderResponse<Plan> deletePlan(List<Plan> plan) {
