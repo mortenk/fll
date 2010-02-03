@@ -63,9 +63,9 @@ public class BruteForcePlanFactory implements PlanFactory {
 		List<Team> teams = new ArrayList<Team>();
 		for (Schedule schedule : schedules) {
 			Team team1 = getTeam(teams, schedule.getTeam1(), totalMinutes);
-			team1.set(new Time(schedule.getKl()).getTotalMinutes() - startTime, 6, 1);
+			team1.set(new Time(schedule.getTime()).getTotalMinutes() - startTime, 6, 1);
 			Team team2 = getTeam(teams, schedule.getTeam2(), totalMinutes);
-			team2.set(new Time(schedule.getKl()).getTotalMinutes() - startTime, 6, 1);
+			team2.set(new Time(schedule.getTime()).getTotalMinutes() - startTime, 6, 1);
 		}
 		return teams;
 	}

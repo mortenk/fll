@@ -2,14 +2,19 @@ Ext.namespace("no.fll.schedule");
 no.fll.schedule.ScheduleGrid = Ext.extend(Ext.grid.EditorGridPanel, {
     constructor: function(config) {
 		this.columns = [
-			    {header: "Kl", width: 80, dataIndex: 'kl'},
+			    {header: "Id", width: 30, dataIndex: 'id'},
+			    {header: "Kl", width: 80, dataIndex: 'time'},
 			    {header: "Lag 1", width: 80, dataIndex: 'team1'},
 			    {header: "Lag 2", width: 80, dataIndex: 'team2'}
 		    ];
         this.store = new Ext.data.Store({
             autoLoad: true,
         	autoSave: false,
-            proxy: new Ext.ux.data.DwrProxy({
+        	sortInfo: {
+        	    field: 'time',
+        	    direction: 'ASC'
+        	},
+        	proxy: new Ext.ux.data.DwrProxy({
 		 		apiActionToHandlerMap : {
 		 			read : {
 		  				dwrFunction : ScheduleService.getSchedule
@@ -24,8 +29,7 @@ no.fll.schedule.ScheduleGrid = Ext.extend(Ext.grid.EditorGridPanel, {
             }),
         	reader: new Ext.data.JsonReader({
         		root : 'objectsToConvertToRecords',
-        		fields: no.fll.schedule.Schedule,
-        		idProperty: 'kl'
+        		fields: no.fll.schedule.Schedule
         	}),
             writer: new Ext.data.JsonWriter({})
         });
