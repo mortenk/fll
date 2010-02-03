@@ -13,16 +13,17 @@ no.fll.schedule.ScheduleController = Ext.extend(Ext.Component, {
             /**
              * @event create-schedule
              * Fires when user clicks the create action on a the create schedule form
-             * @param {int} teams The number of teams
+             * @param (string) starttime Start of first round
+             * @param {int} duration Duration of each round
              */
             'create-schedule',
             'clear-form'
         );
     },
 
-    createSchedule : function(starttime, duration, teams) {
+    createSchedule : function(starttime, duration) {
         this.mainPanel.setActiveTab(this.grid);
-        ScheduleService.generateSchedule(starttime, duration, teams, function(schedule) {
+        ScheduleService.generateSchedule(starttime, duration, function(schedule) {
         	var records = new Array();
         	for (var i in schedule) {
         		records[i] = new no.fll.schedule.Schedule(schedule[i]);

@@ -3,23 +3,17 @@ package no.fll.schedule;
 import java.util.ArrayList;
 import java.util.List;
 
+import no.fll.team.Team;
+
 public class RandomScheduleFactory implements ScheduleFactory {
 
-	public List<Integer> createTeamList(int teams) {
-		return randomize(createLinearTeamList(teams));
+	@Override
+	public List<Team> createTeamList(List<Team> teams) {
+		return randomize(teams);
 	}
 
-	public List<Integer> createLinearTeamList(int teams) {
-		List<Integer> teamList = new ArrayList<Integer>();
-		for (int i = 0; i < teams; i++)
-			teamList.add(i);
-		if (teams % 2 != 0)
-			teamList.add(0);
-		return teamList;
-	}
-
-	public static List<Integer> randomize(List<Integer> list) {
-		List<Integer> newList = new ArrayList<Integer>();
+	private static List<Team> randomize(List<Team> list) {
+		List<Team> newList = new ArrayList<Team>();
 		while (!list.isEmpty()) {
 			int i = getRandomTeam(list.size());
 			newList.add(list.get((i)));
@@ -28,7 +22,8 @@ public class RandomScheduleFactory implements ScheduleFactory {
 		return newList;
 	}
 
-	public static int getRandomTeam(int max) {
+	private static int getRandomTeam(int max) {
 		return (int) Math.floor(Math.random() * max);
 	}
+
 }

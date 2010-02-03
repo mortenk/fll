@@ -2,8 +2,10 @@ package no.fll.schedule;
 
 import java.util.List;
 
+import no.fll.team.Team;
+
 public interface ScheduleFactory {
 
-	public List<Integer> createTeamList(int teams);
+	public List<Team> createTeamList(List<Team> teams);
 
 }

@@ -6,12 +6,16 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 
+import no.fll.team.Team;
+import no.fll.team.TeamService;
 import no.fll.web.JsonReaderResponse;
 
 public class ScheduleService {
 
 	@Autowired
 	private ScheduleFactory scheduleFactory;
+	@Autowired
+	private TeamService teamService;
 	@Autowired
 	private HibernateTemplate hibernateTemplate;
 	
@@ -29,18 +33,18 @@ public class ScheduleService {
 		return new JsonReaderResponse(schedules);
 	}
 
-	public List<Schedule> generateSchedule(String startTime, int increment, int teams) {
-		List<Integer> teamList = scheduleFactory.createTeamList(teams);
+	public List<Schedule> generateSchedule(String startTime, int increment) {
+		List<Team> teams = teamService.getTeams().getObjectsToConvertToRecords();
+		List<Team> teamList = scheduleFactory.createTeamList(teams);
 		List<Schedule> schedules = new ArrayList<Schedule>();
 		TimeIncrementor timeIncrementor = new TimeIncrementor(startTime, increment);
 		for (int i=0; i<teamList.size();) {
 			schedules.add(new Schedule(timeIncrementor.getNextValue(), getTeamName(teamList.get(i++)), getTeamName(teamList.get(i++))));
 		}
 		return schedules;
-		//return new Schedule[]{new Schedule("09.00", "Lag 1", "Lag 2"), new Schedule("09.06", "Lag 3", "Lag 4")};
 	}
 
-	private String getTeamName(Integer team) {
-		return "Lag " + (team + 1);
+	private String getTeamName(Team team) {
+		return team.getName();
 	}
 }

@@ -11,13 +11,11 @@ no.fll.schedule.ScheduleCreateForm = Ext.extend(Ext.form.FormPanel, {
         this.labelWidth = 80;
         this.frame = true;
         this.items = [{
-        	xtype: 'numberfield',
-            fieldLabel: "Antall lag",
-            name: 'teams',
-            value: 16,
-            allowBlank: false,
-            allowDecimals: false,
-            allowNegative: false
+        	xtype: 'timefield',
+        	fieldLabel: 'Starttid',
+        	name: 'starttime',
+        	format: 'H:i',
+        	value: '09:00'
         },{
         	xtype: 'numberfield',
         	fieldLabel: 'Rundetid',
@@ -26,18 +24,12 @@ no.fll.schedule.ScheduleCreateForm = Ext.extend(Ext.form.FormPanel, {
             allowBlank: false,
             allowDecimals: false,
             allowNegative: false
-        },{
-        	xtype: 'timefield',
-        	fieldLabel: 'Starttid',
-        	name: 'starttime',
-        	format: 'H:i',
-        	value: '09:00'
         }];
         this.buttons = [{
         		text: 'Opprett',
 	            scope: this,
 	            handler: function() {
-	        		this.fireEvent('create-schedule', this.getForm().getValues().starttime, this.getForm().getValues().duration, this.getForm().getValues().teams);
+	        		this.fireEvent('create-schedule', this.getForm().getValues().starttime, this.getForm().getValues().duration);
 	            }
 	        },{
 	            text: 'Tilbakestill',
