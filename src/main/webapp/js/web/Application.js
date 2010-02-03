@@ -14,7 +14,10 @@ no.fll.web.Application = Ext.extend(Ext.Panel, {
             defaults: {
                 closable:false
             }, 
-            items: new no.fll.activity.ActivityGrid({title: 'Aktiviteter', closable: false})
+            items: [
+                new no.fll.team.TeamGrid({title: 'Lag', closable: false}),
+                new no.fll.activity.ActivityGrid({title: 'Aktiviteter', closable: false})
+            ]
         });
 
 		this.leftPanel = new Ext.Panel({

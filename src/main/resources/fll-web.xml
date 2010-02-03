@@ -11,6 +11,7 @@
 		<dwr:convert type="bean" class="no.fll.activity.Activity" />
 		<dwr:convert type="bean" class="no.fll.plan.Plan" />
 		<dwr:convert type="bean" class="no.fll.schedule.Schedule" />
+		<dwr:convert type="bean" class="no.fll.team.Team" />
 		<dwr:convert type="bean" class="no.fll.web.JsonReaderResponse" />
     </dwr:configuration>
 
@@ -27,6 +28,10 @@
 
 	<bean class="no.fll.schedule.ScheduleService" autowire="byType">
         <dwr:remote javascript="ScheduleService" />
+    </bean>
+
+	<bean class="no.fll.team.TeamService" autowire="byType">
+        <dwr:remote javascript="TeamService" />
     </bean>
 
 </beans>
