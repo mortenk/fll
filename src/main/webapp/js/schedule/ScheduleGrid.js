@@ -1,13 +1,41 @@
 Ext.namespace("no.fll.schedule");
 no.fll.schedule.ScheduleGrid = Ext.extend(Ext.grid.EditorGridPanel, {
     constructor: function(config) {
+		this.teamRenderer = function(value){
+			return value.name;
+		};
+		this.timeEditor = new Ext.form.TextField({
+            allowBlank: false
+        });
+		this.teamEditor = new Ext.form.ComboBox({
+            typeAhead: true,
+            triggerAction: 'all',
+            // transform the data already specified in html
+            lazyRender: true,
+            listClass: 'x-combo-list-small',
+            valueField: 'id',
+            displayField: 'name',
+            store : new Ext.data.Store({
+                autoLoad: true,
+                proxy: new Ext.ux.data.DwrProxy({
+        	 		apiActionToHandlerMap : {
+        	 			read : {
+        	  				dwrFunction : TeamService.getTeams
+        	 			}
+        	 		}
+                }),
+            	reader: new Ext.data.JsonReader({
+            		root : 'objectsToConvertToRecords',
+            		fields: no.fll.team.Team
+            	})
+            })
+
+        });
 		this.columns = [
 			    {header: "Id", width: 30, dataIndex: 'id'},
-			    {header: "Kl", width: 80, dataIndex: 'time'},
-			    {header: "Lag 1 id", width: 80, dataIndex: 'team1.id'},
-			    {header: "Lag 2 id", width: 80, dataIndex: 'team2.id'},
-			    {header: "Lag 1 navn", width: 80, dataIndex: 'team1.name'},
-			    {header: "Lag 2 navn", width: 80, dataIndex: 'team2.name'}
+			    {header: "Kl", width: 80, dataIndex: 'time', editor: this.timeEditor},
+			    {header: "Lag 1", width: 80, dataIndex: 'team1', editor: this.teamEditor, renderer: this.teamRenderer},
+			    {header: "Lag 2", width: 80, dataIndex: 'team2', editor: this.teamEditor, renderer: this.teamRenderer}
 		    ];
         this.store = new Ext.data.Store({
             autoLoad: true,
@@ -23,6 +51,9 @@ no.fll.schedule.ScheduleGrid = Ext.extend(Ext.grid.EditorGridPanel, {
 		 			},
 		 			create : {
 		  				dwrFunction : ScheduleService.createSchedule
+		 			},
+		 			update : {
+		  				dwrFunction : ScheduleService.updateSchedule
 		 			},
 		 			destroy : {
 		  				dwrFunction : ScheduleService.deleteSchedule
@@ -61,5 +92,23 @@ no.fll.schedule.ScheduleGrid = Ext.extend(Ext.grid.EditorGridPanel, {
             }
         }];
 		no.fll.schedule.ScheduleGrid.superclass.constructor.call(this, config);
+	},
+	preEditValue: function(r, field) {
+		if (field == 'team1' || field == 'team2') {
+			var value = r.data[field].name;
+		    return this.autoEncode && Ext.isString(value) ? Ext.util.Format.htmlDecode(value) : value;
+		} else {
+			return no.fll.schedule.ScheduleGrid.superclass.preEditValue(r, field);
+		}
+	},
+	postEditValue : function(value, originalValue, r, field){
+		if (field == 'team1' || field == 'team2') {
+			var store = this.teamEditor.store;
+			var idx = store.findExact('id', value);
+			var rec = store.getAt(idx);
+			return rec.data;
+		} else {
+			return no.fll.schedule.ScheduleGrid.superclass.postEditValue(value, originalValue, r, field);
+		}
 	}
 });

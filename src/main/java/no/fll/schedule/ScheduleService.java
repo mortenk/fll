@@ -28,6 +28,10 @@ public class ScheduleService {
 		return new JsonReaderResponse(schedules);
 	}
 
+	public JsonReaderResponse<Schedule> updateSchedule(List<Schedule> oldValues, List<Schedule> newValues) {
+		return createSchedule(newValues);
+	}
+
 	public JsonReaderResponse<Schedule> deleteSchedule(List<Schedule> schedules) {
 		hibernateTemplate.deleteAll(schedules);
 		return new JsonReaderResponse(schedules);
