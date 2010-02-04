@@ -22,31 +22,7 @@ no.fll.team.TeamGrid = Ext.extend(Ext.grid.EditorGridPanel, {
             }),
 			dataIndex: 'name'
 		}];
-        this.store = new Ext.data.Store({
-        	autoSave: false,
-            autoLoad: true,
-            proxy: new Ext.ux.data.DwrProxy({
-    	 		apiActionToHandlerMap : {
-    	 			read : {
-    	  				dwrFunction : TeamService.getTeams
-    	 			},
-    	 			create : {
-    	 				dwrFunction : TeamService.createTeam
-    	 			}, 
-    	 			update : {
-    	 				dwrFunction : TeamService.updateTeam
-    	 			}, 
-    	 			destroy : {
-    	 				dwrFunction : TeamService.deleteTeam
-    	 			}
-    	 		}
-            }),
-        	reader: new Ext.data.JsonReader({
-        		root : 'objectsToConvertToRecords',
-        		fields: no.fll.team.Team
-        	}),
-            writer: new Ext.data.JsonWriter({})
-        });
+        this.store = new no.fll.team.TeamStore();
         this.tbar = [{
             text: 'Ny',
             tooltip: 'Nytt lag',

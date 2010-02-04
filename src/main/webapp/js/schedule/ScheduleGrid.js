@@ -15,21 +15,7 @@ no.fll.schedule.ScheduleGrid = Ext.extend(Ext.grid.EditorGridPanel, {
             listClass: 'x-combo-list-small',
             valueField: 'id',
             displayField: 'name',
-            store : new Ext.data.Store({
-                autoLoad: true,
-                proxy: new Ext.ux.data.DwrProxy({
-        	 		apiActionToHandlerMap : {
-        	 			read : {
-        	  				dwrFunction : TeamService.getTeams
-        	 			}
-        	 		}
-                }),
-            	reader: new Ext.data.JsonReader({
-            		root : 'objectsToConvertToRecords',
-            		fields: no.fll.team.Team
-            	})
-            })
-
+            store : new no.fll.team.TeamStore()
         });
 		this.columns = [
 			    {header: "Id", width: 30, dataIndex: 'id'},
