@@ -32,7 +32,7 @@ public class BruteForcePlanFactory implements PlanFactory {
 			ActivitySchedule activitySchedule = new ActivitySchedule(activity);
 			boolean rc = set_activity(0, minutes, teams, activitySchedule);
 			if (rc == false) 
-				break;
+				return null;
 		}
 		
 		List<Plan> plans = new ArrayList<Plan>();
@@ -99,7 +99,9 @@ public class BruteForcePlanFactory implements PlanFactory {
 				else return finished(teams, activity);
 			}
 		}
-		return finished(teams, activity);
+		if (finished(teams, activity))
+			return true;
+		return set_activity(minute+activity.getDuration(), TOTAL_MINUTES, teams, activitySchedule);
 	}
 
 	private boolean finished(List<TeamSchedule> teams, Activity activity) {

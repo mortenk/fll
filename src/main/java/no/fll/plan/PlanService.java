@@ -32,9 +32,11 @@ public class PlanService {
 		return new JsonReaderResponse(plan);
 	}
 
-	public List<Plan> generatePlan(String startTime, String endTime, int pitTime) {
+	public JsonReaderResponse<Plan> generatePlan(String startTime, String endTime, int pitTime) {
 		List<Plan> plan = planFactory.generatePlan(startTime, endTime, pitTime);
-		return plan;
+		if (plan != null)
+			return new JsonReaderResponse(plan);
+		return new JsonReaderResponse();
 	}
 
 }

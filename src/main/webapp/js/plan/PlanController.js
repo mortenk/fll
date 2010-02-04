@@ -22,11 +22,11 @@ no.fll.plan.PlanController = Ext.extend(Ext.Component, {
     createPlan : function(startTime, endTime, pitTime) {
         this.mainPanel.setActiveTab(this.grid);
         PlanService.generatePlan(startTime, endTime, pitTime, function(plan) {
-        	var records = new Array();
-        	for (var i in plan) {
-        		records[i] = new no.fll.plan.Plan(plan[i]);
+        	if (plan.success) {
+        		this.grid.store.loadData(plan);
+        	} else {
+        		alert('Fail');
         	}
-        	this.grid.store.add(records);
         }.createDelegate(this));
         this.mainPanel.doLayout();
     },
