@@ -4,8 +4,10 @@ no.fll.schedule.ScheduleGrid = Ext.extend(Ext.grid.EditorGridPanel, {
 		this.columns = [
 			    {header: "Id", width: 30, dataIndex: 'id'},
 			    {header: "Kl", width: 80, dataIndex: 'time'},
-			    {header: "Lag 1", width: 80, dataIndex: 'team1'},
-			    {header: "Lag 2", width: 80, dataIndex: 'team2'}
+			    {header: "Lag 1 id", width: 80, dataIndex: 'team1.id'},
+			    {header: "Lag 2 id", width: 80, dataIndex: 'team2.id'},
+			    {header: "Lag 1 navn", width: 80, dataIndex: 'team1.name'},
+			    {header: "Lag 2 navn", width: 80, dataIndex: 'team2.name'}
 		    ];
         this.store = new Ext.data.Store({
             autoLoad: true,

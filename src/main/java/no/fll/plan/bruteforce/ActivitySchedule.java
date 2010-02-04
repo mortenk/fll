@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import no.fll.activity.Activity;
+import no.fll.team.Team;
 
 
 public class ActivitySchedule {

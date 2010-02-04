@@ -24,11 +24,7 @@ no.fll.schedule.ScheduleController = Ext.extend(Ext.Component, {
     createSchedule : function(starttime, duration) {
         this.mainPanel.setActiveTab(this.grid);
         ScheduleService.generateSchedule(starttime, duration, function(schedule) {
-        	var records = new Array();
-        	for (var i in schedule) {
-        		records[i] = new no.fll.schedule.Schedule(schedule[i]);
-        	}
-        	this.grid.store.add(records);
+        	this.grid.store.loadData({objectsToConvertToRecords: schedule}, true);
         }.createDelegate(this));
         this.mainPanel.doLayout();
     },

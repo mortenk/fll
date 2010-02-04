@@ -39,12 +39,9 @@ public class ScheduleService {
 		List<Schedule> schedules = new ArrayList<Schedule>();
 		TimeIncrementor timeIncrementor = new TimeIncrementor(startTime, increment);
 		for (int i=0; i<teamList.size();) {
-			schedules.add(new Schedule(timeIncrementor.getNextValue(), getTeamName(teamList.get(i++)), getTeamName(teamList.get(i++))));
+			schedules.add(new Schedule(timeIncrementor.getNextValue(), teamList.get(i++), teamList.get(i++)));
 		}
 		return schedules;
 	}
 
-	private String getTeamName(Team team) {
-		return team.getName();
-	}
 }

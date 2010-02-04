@@ -27,7 +27,7 @@ public class BruteForcePlanFactory implements PlanFactory {
 		List<Activity> activities = activityService.getActivities().getObjectsToConvertToRecords();
 		List<Schedule> schedules = scheduleService.getSchedule().getObjectsToConvertToRecords();
 		int minutes = new Time(endTime).getTotalMinutes() - new Time(startTime).getTotalMinutes();
-		List<Team> teams = createTeamList(new Time(startTime).getTotalMinutes(), minutes, schedules);
+		List<TeamSchedule> teams = createTeamList(new Time(startTime).getTotalMinutes(), minutes, schedules);
 		for (Activity activity : activities) {
 			ActivitySchedule activitySchedule = new ActivitySchedule(activity);
 			boolean rc = set_activity(0, minutes, teams, activitySchedule);
@@ -36,7 +36,7 @@ public class BruteForcePlanFactory implements PlanFactory {
 		}
 		
 		List<Plan> plans = new ArrayList<Plan>();
-		for (Team team : teams) {
+		for (TeamSchedule team : teams) {
 			int last = 0;
 			int start = 0; 
 			for (int i=0; i<minutes; i++) {
@@ -58,19 +58,19 @@ public class BruteForcePlanFactory implements PlanFactory {
 		return plans;
 	}
 
-	private List<Team> createTeamList(int startTime, int totalMinutes, List<Schedule> schedules) {
-		List<Team> teams = new ArrayList<Team>();
+	private List<TeamSchedule> createTeamList(int startTime, int totalMinutes, List<Schedule> schedules) {
+		List<TeamSchedule> teams = new ArrayList<TeamSchedule>();
 		for (Schedule schedule : schedules) {
-			Team team1 = getTeam(teams, schedule.getTeam1(), totalMinutes);
+			TeamSchedule team1 = getTeamSchedule(teams, schedule.getTeam1(), totalMinutes);
 			team1.set(new Time(schedule.getTime()).getTotalMinutes() - startTime, 6, 1);
-			Team team2 = getTeam(teams, schedule.getTeam2(), totalMinutes);
+			TeamSchedule team2 = getTeamSchedule(teams, schedule.getTeam2(), totalMinutes);
 			team2.set(new Time(schedule.getTime()).getTotalMinutes() - startTime, 6, 1);
 		}
 		return teams;
 	}
 
-	private Team getTeam(List<Team> teams, String teamName, int totalMinutes) {
-		Team team = new Team(teamName, totalMinutes);
+	private TeamSchedule getTeamSchedule(List<TeamSchedule> teams, no.fll.team.Team teamName, int totalMinutes) {
+		TeamSchedule team = new TeamSchedule(teamName, totalMinutes);
 		while (teams.size() < team.getId())
 			teams.add(null);
 		if (teams.get(team.getId()-1) != null)
@@ -79,21 +79,21 @@ public class BruteForcePlanFactory implements PlanFactory {
 		return team;
 	}
 
-	private boolean set_activity(int minute, int TOTAL_MINUTES, List<Team> teams, ActivitySchedule activitySchedule) {
+	private boolean set_activity(int minute, int TOTAL_MINUTES, List<TeamSchedule> teams, ActivitySchedule activitySchedule) {
 		Activity activity = activitySchedule.getActivity();
 		if (minute >= TOTAL_MINUTES)
 			return finished(teams, activity);
-		for (Team team : teams) {
+		for (TeamSchedule team : teams) {
 			if (!team.hasDone(activity.getId()) && team.hasTime(minute, activity.getDuration()) && activitySchedule.isFree(minute))	{
 				team.set(minute, activity.getDuration(), activity.getId());
-				activitySchedule.set(minute, team);
+				activitySchedule.set(minute, team.getTeam());
 				if (finished(teams, activity))
 					return true;
 				else if (minute < TOTAL_MINUTES-1) {
 					boolean rc = set_activity(minute+activity.getDuration(), TOTAL_MINUTES, teams, activitySchedule);
 					if (rc == false) {
 						team.clear(minute, activity.getDuration());
-						activitySchedule.clear(minute, team);
+						activitySchedule.clear(minute, team.getTeam());
 					}
 				}
 				else return finished(teams, activity);
@@ -102,8 +102,8 @@ public class BruteForcePlanFactory implements PlanFactory {
 		return finished(teams, activity);
 	}
 
-	private boolean finished(List<Team> teams, Activity activity) {
-		for (Team team : teams) {
+	private boolean finished(List<TeamSchedule> teams, Activity activity) {
+		for (TeamSchedule team : teams) {
 			if (!team.hasDone(activity.getId()))
 				return false;
 		}
