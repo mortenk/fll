@@ -1,5 +1,5 @@
 Ext.namespace("no.fll.schedule");
-no.fll.schedule.ScheduleGrid = Ext.extend(Ext.grid.EditorGridPanel, {
+no.fll.schedule.ScheduleGrid = Ext.extend(no.fll.web.FllGrid, {
     constructor: function(config) {
 		this.teamRenderer = function(value){
 			return value.name;
@@ -52,31 +52,6 @@ no.fll.schedule.ScheduleGrid = Ext.extend(Ext.grid.EditorGridPanel, {
         	}),
             writer: new Ext.data.JsonWriter({})
         });
-        this.tbar = [{
-            text: 'Lagre',
-            tooltip: 'Lagrer kjøreplan',
-            iconCls: 'save',
-            scope: this,
-            handler: function() {
-    			this.store.save();
-            }
-        },{
-            text: 'Angre',
-            tooltip: 'Tilbakestiller til siste lagring',
-            iconCls: 'revert',
-            scope: this,
-            handler: function() {
-        		this.store.reload();
-            }
-        },{
-            text: 'Slett',
-            tooltip: 'Sletter hele kjøreplanen',
-            iconCls: 'delete',
-            scope: this,
-            handler: function() {
-        		this.store.removeAll();
-            }
-        }];
 		no.fll.schedule.ScheduleGrid.superclass.constructor.call(this, config);
 	},
 	preEditValue: function(r, field) {

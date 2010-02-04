@@ -1,8 +1,6 @@
 Ext.namespace("no.fll.team");
-no.fll.team.TeamGrid = Ext.extend(Ext.grid.EditorGridPanel, {
+no.fll.team.TeamGrid = Ext.extend(no.fll.web.FllGrid, {
     constructor: function(config) {
-		this.autoWidth = true;
-		this.autoHeight = true;	
 		this.columns = [{
 			header: "Id", 
 			width: 30, 
@@ -32,30 +30,6 @@ no.fll.team.TeamGrid = Ext.extend(Ext.grid.EditorGridPanel, {
         		var id = this.getNextId();
         		var name = "Lag " + id;
         		this.store.add(new no.fll.team.Team({id: id, name: name}));
-            }
-        },{
-            text: 'Lagre',
-            tooltip: 'Lagrer alle lag',
-            iconCls: 'save',
-            scope: this,
-            handler: function() {
-    			this.store.save();
-            }
-        },{
-            text: 'Angre',
-            tooltip: 'Tilbakestiller til siste lagring',
-            iconCls: 'revert',
-            scope: this,
-            handler: function() {
-        		this.store.reload();
-            }
-        },{
-            text: 'Slett',
-            tooltip: 'Sletter alle lag',
-            iconCls: 'delete',
-            scope: this,
-            handler: function() {
-        		this.store.removeAll();
             }
         }];
 		no.fll.team.TeamGrid.superclass.constructor.call(this, config);

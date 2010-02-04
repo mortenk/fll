@@ -1,5 +1,5 @@
 Ext.namespace("no.fll.activity");
-no.fll.activity.ActivityGrid = Ext.extend(Ext.grid.EditorGridPanel, {
+no.fll.activity.ActivityGrid = Ext.extend(no.fll.web.FllGrid, {
     constructor: function(config) {
 		this.autoWidth = true;
 		this.autoHeight = true;	
@@ -59,30 +59,6 @@ no.fll.activity.ActivityGrid = Ext.extend(Ext.grid.EditorGridPanel, {
             scope: this,
             handler: function() {
         		this.store.add(new no.fll.activity.Activity({activity: 'Tøys', duration: 15}));
-            }
-        },{
-            text: 'Lagre',
-            tooltip: 'Lagrer aktivitetsliste',
-            iconCls: 'save',
-            scope: this,
-            handler: function() {
-    			this.store.save();
-            }
-        },{
-            text: 'Angre',
-            tooltip: 'Tilbakestiller til siste lagring',
-            iconCls: 'revert',
-            scope: this,
-            handler: function() {
-        		this.store.reload();
-            }
-        },{
-            text: 'Slett',
-            tooltip: 'Sletter alle aktiviteter',
-            iconCls: 'delete',
-            scope: this,
-            handler: function() {
-        		this.store.removeAll();
             }
         }];
 		no.fll.activity.ActivityGrid.superclass.constructor.call(this, config);

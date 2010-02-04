@@ -1,5 +1,5 @@
 Ext.namespace("no.fll.plan");
-no.fll.plan.PlanGrid = Ext.extend(Ext.grid.EditorGridPanel, {
+no.fll.plan.PlanGrid = Ext.extend(no.fll.web.FllGrid, {
     constructor: function(config) {
 		this.columns = [{
 			header: "Kl", 
@@ -52,31 +52,6 @@ no.fll.plan.PlanGrid = Ext.extend(Ext.grid.EditorGridPanel, {
         });
         this.view = new Ext.grid.GroupingView({
         });
-        this.tbar = [{
-            text: 'Lagre',
-            tooltip: 'Lagrer plan',
-            iconCls: 'save',
-            scope: this,
-            handler: function() {
-    			this.store.save();
-            }
-        },{
-            text: 'Angre',
-            tooltip: 'Tilbakestiller til siste lagring',
-            iconCls: 'revert',
-            scope: this,
-            handler: function() {
-        		this.store.reload();
-            }
-        },{
-            text: 'Slett',
-            tooltip: 'Sletter hele planen',
-            iconCls: 'delete',
-            scope: this,
-            handler: function() {
-        		this.store.removeAll();
-            }
-        }];
 		no.fll.plan.PlanGrid.superclass.constructor.call(this, config);
 	}
 });
