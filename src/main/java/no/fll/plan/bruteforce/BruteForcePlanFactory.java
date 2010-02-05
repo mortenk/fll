@@ -1,7 +1,9 @@
 package no.fll.plan.bruteforce;
 
 
+
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import no.fll.plan.PlanFactory;
 import no.fll.plan.Time;
 import no.fll.schedule.Schedule;
 import no.fll.schedule.ScheduleService;
+import no.fll.team.Team;
 
 
 public class BruteForcePlanFactory implements PlanFactory {
@@ -40,7 +43,7 @@ public class BruteForcePlanFactory implements PlanFactory {
 		if (ringside == null || pit == null) {
 			return null;
 		}
-		List<TeamSchedule> teams = createTeamList(new Time(startTime).getTotalMinutes(), minutes, schedules, ringside, pit);
+		Collection<TeamSchedule> teams = createTeamList(new Time(startTime).getTotalMinutes(), minutes, schedules, ringside, pit);
 		for (Activity activity : activities) {
 			ActivitySchedule activitySchedule = new ActivitySchedule(activity);
 			boolean rc = set_activity(0, minutes, teams, activitySchedule);
@@ -71,31 +74,32 @@ public class BruteForcePlanFactory implements PlanFactory {
 		return plans;
 	}
 
-	private List<TeamSchedule> createTeamList(int startTime, int totalMinutes, List<Schedule> schedules, Activity ringside, Activity pit) {
-		List<TeamSchedule> teams = new ArrayList<TeamSchedule>();
+	private Collection<TeamSchedule> createTeamList(int startTime, int totalMinutes, List<Schedule> schedules, Activity ringside, Activity pit) {
+		Collection<TeamSchedule> teams = new ArrayList<TeamSchedule>();
 		for (Schedule schedule : schedules) {
 			int time = new Time(schedule.getTime()).getTotalMinutes() - startTime;
-			TeamSchedule team1 = getTeamSchedule(teams, schedule.getTeam1(), totalMinutes);
-			team1.set(time-pit.getDuration(), pit.getDuration(), pit.getId());
-			team1.set(time, ringside.getDuration(), ringside.getId());
-			TeamSchedule team2 = getTeamSchedule(teams, schedule.getTeam2(), totalMinutes);
-			team2.set(time-pit.getDuration(), pit.getDuration(), pit.getId());
-			team2.set(time, ringside.getDuration(), ringside.getId());
+			setTeamSchedule(getTeamSchedule(teams, schedule.getTeam1(), totalMinutes), ringside, pit, time);
+			setTeamSchedule(getTeamSchedule(teams, schedule.getTeam2(), totalMinutes), ringside, pit, time);
 		}
 		return teams;
 	}
 
-	private TeamSchedule getTeamSchedule(List<TeamSchedule> teams, no.fll.team.Team teamName, int totalMinutes) {
-		TeamSchedule team = new TeamSchedule(teamName, totalMinutes);
-		while (teams.size() < team.getId())
-			teams.add(null);
-		if (teams.get(team.getId()-1) != null)
-			return teams.get(team.getId()-1);
-		teams.set(team.getId()-1, team);
-		return team;
+	private void setTeamSchedule(TeamSchedule teamSchedule, Activity ringside, Activity pit, int time) {
+		teamSchedule.set(time-pit.getDuration(), pit.getDuration(), pit.getId());
+		teamSchedule.set(time, ringside.getDuration(), ringside.getId());
 	}
 
-	private boolean set_activity(int minute, int TOTAL_MINUTES, List<TeamSchedule> teams, ActivitySchedule activitySchedule) {
+	private TeamSchedule getTeamSchedule(Collection<TeamSchedule> teams, Team team, int totalMinutes) {
+		for (TeamSchedule teamSchedule : teams) {
+			if (teamSchedule.getId() == team.getId())
+				return teamSchedule;
+		}
+		TeamSchedule teamSchedule = new TeamSchedule(team, totalMinutes);
+		teams.add(teamSchedule);
+		return teamSchedule;
+	}
+
+	private boolean set_activity(int minute, int TOTAL_MINUTES, Collection<TeamSchedule> teams, ActivitySchedule activitySchedule) {
 		Activity activity = activitySchedule.getActivity();
 		if (minute >= TOTAL_MINUTES)
 			return finished(teams, activity);
@@ -120,7 +124,7 @@ public class BruteForcePlanFactory implements PlanFactory {
 		return set_activity(minute+activity.getDuration(), TOTAL_MINUTES, teams, activitySchedule);
 	}
 
-	private boolean finished(List<TeamSchedule> teams, Activity activity) {
+	private boolean finished(Collection<TeamSchedule> teams, Activity activity) {
 		for (TeamSchedule team : teams) {
 			if (!team.hasDone(activity.getId()))
 				return false;
