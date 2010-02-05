@@ -23,7 +23,7 @@ no.fll.plan.PlanController = Ext.extend(Ext.Component, {
         this.mainPanel.setActiveTab(this.grid);
         PlanService.generatePlan(startTime, endTime, pitTime, function(plan) {
         	if (plan.success) {
-        		this.grid.store.loadData(plan);
+        		this.grid.store.loadData(plan, true);
         	} else {
         		alert('Fail');
         	}

@@ -2,6 +2,10 @@ Ext.namespace("no.fll.plan");
 no.fll.plan.PlanGrid = Ext.extend(no.fll.web.FllGrid, {
     constructor: function(config) {
 		this.columns = [{
+			header: "Id", 
+			width: 30, 
+			dataIndex: 'id'
+		},{
 			header: "Kl", 
 			width: 80, 
 			sortable: true, 

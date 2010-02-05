@@ -19,4 +19,7 @@
 	</bean>
 
 	<bean class="no.fll.schedule.ScheduleExportController"/>
+
+	<bean class="no.fll.plan.PlanExportController"/>
+
 </beans>
