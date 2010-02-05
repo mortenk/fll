@@ -19,7 +19,7 @@ public class ActivityServiceTest {
 	
 	@Test
 	public void testCrud() {
-		Activity activity = new Activity(1, "a", 15);
+		Activity activity = new Activity(1, "a", 15, "09:00");
 		hibernateTemplate.save(activity);
 		List<Activity> activities = hibernateTemplate.loadAll(Activity.class);
 		assertEquals(1, activities.size());

@@ -26,6 +26,14 @@ no.fll.activity.ActivityGrid = Ext.extend(no.fll.web.FllGrid, {
                 allowNegative: false
             }),
 			dataIndex: 'duration'
+		},{
+			header: "Tidspunkt", 
+			width: 80, 
+			sortable: true, 
+			editor: new Ext.form.TextField({
+                allowBlank: false
+            }),
+			dataIndex: 'time'
 		}];
         this.store = new Ext.data.Store({
         	autoSave: false,
@@ -58,23 +66,26 @@ no.fll.activity.ActivityGrid = Ext.extend(no.fll.web.FllGrid, {
             iconCls: 'new',
             scope: this,
             handler: function() {
-        		this.store.add(new no.fll.activity.Activity({activity: this.getNextActivityName(), duration: 15}));
+        		this.store.add(this.getNextActivity());
             }
         }];
 		no.fll.activity.ActivityGrid.superclass.constructor.call(this, config);
 	}, 
-	getNextActivityName: function() {
+	getNextActivity: function() {
 		if (this.activity == undefined) {
 			this.activity = 1;
-			return 'Ringside';
+			return new no.fll.activity.Activity({activity: 'Ringside', duration: 6, time: 'Auto'});
 		} else if (this.activity == 1) {
 			this.activity++;
-			return 'Teori';
+			return new no.fll.activity.Activity({activity: 'Pit', duration: 10, time: 'Auto'});
 		} else if (this.activity == 2) {
 			this.activity++;
-			return 'Teknisk';
+			return new no.fll.activity.Activity({activity: 'Teori', duration: 15, time: 'Auto'});
+		} else if (this.activity == 3) {
+			this.activity++;
+			return new no.fll.activity.Activity({activity: 'Teknisk', duration: 15, time: 'Auto'});
 		} else {
-			return 'Aktivitet ' + this.activity++;
+			return new no.fll.activity.Activity({activity: 'Aktivitet ' + this.activity++, duration: 15, time: 'Auto'});
 		}
 	}
 });

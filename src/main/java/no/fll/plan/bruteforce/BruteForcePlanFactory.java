@@ -27,7 +27,20 @@ public class BruteForcePlanFactory implements PlanFactory {
 		List<Activity> activities = activityService.getActivities().getObjectsToConvertToRecords();
 		List<Schedule> schedules = scheduleService.getSchedule().getObjectsToConvertToRecords();
 		int minutes = new Time(endTime).getTotalMinutes() - new Time(startTime).getTotalMinutes();
-		List<TeamSchedule> teams = createTeamList(new Time(startTime).getTotalMinutes(), minutes, schedules);
+		Activity ringside = null;
+		Activity pit = null;
+		for (Activity activity : activities) {
+			if (activity.getActivity().toLowerCase().contains("ring")) {
+				ringside = activity;
+			}
+			else if (activity.getActivity().toLowerCase().contains("pit")) {
+				pit = activity;
+			}
+		}
+		if (ringside == null || pit == null) {
+			return null;
+		}
+		List<TeamSchedule> teams = createTeamList(new Time(startTime).getTotalMinutes(), minutes, schedules, ringside, pit);
 		for (Activity activity : activities) {
 			ActivitySchedule activitySchedule = new ActivitySchedule(activity);
 			boolean rc = set_activity(0, minutes, teams, activitySchedule);
@@ -58,13 +71,16 @@ public class BruteForcePlanFactory implements PlanFactory {
 		return plans;
 	}
 
-	private List<TeamSchedule> createTeamList(int startTime, int totalMinutes, List<Schedule> schedules) {
+	private List<TeamSchedule> createTeamList(int startTime, int totalMinutes, List<Schedule> schedules, Activity ringside, Activity pit) {
 		List<TeamSchedule> teams = new ArrayList<TeamSchedule>();
 		for (Schedule schedule : schedules) {
+			int time = new Time(schedule.getTime()).getTotalMinutes() - startTime;
 			TeamSchedule team1 = getTeamSchedule(teams, schedule.getTeam1(), totalMinutes);
-			team1.set(new Time(schedule.getTime()).getTotalMinutes() - startTime, 6, 1);
+			team1.set(time-pit.getDuration(), pit.getDuration(), pit.getId());
+			team1.set(time, ringside.getDuration(), ringside.getId());
 			TeamSchedule team2 = getTeamSchedule(teams, schedule.getTeam2(), totalMinutes);
-			team2.set(new Time(schedule.getTime()).getTotalMinutes() - startTime, 6, 1);
+			team2.set(time-pit.getDuration(), pit.getDuration(), pit.getId());
+			team2.set(time, ringside.getDuration(), ringside.getId());
 		}
 		return teams;
 	}

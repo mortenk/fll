@@ -22,13 +22,17 @@ public class Activity {
 	@Column(name = "DURATION")
 	private int duration;
 
+	@Column(name = "TIME")
+	private String time;
+
 	public Activity() {}
 	
-	public Activity(int id, String activity, int duration) {
+	public Activity(int id, String activity, int duration, String time) {
 		super();
 		this.id = id;
 		this.activity = activity;
 		this.duration = duration;
+		this.time = time;
 	}
 
 	public int getId() {
@@ -55,11 +59,19 @@ public class Activity {
 		this.duration = duration;
 	}
 	
+	public String getTime() {
+		return time;
+	}
+
+	public void setTime(String time) {
+		this.time = time;
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof Activity) {
 			Activity activity = (Activity) obj;
-			return (this.id == activity.getId() && this.activity.equals(activity.getActivity()) && this.duration == activity.getDuration());
+			return (this.id == activity.getId() && this.activity.equals(activity.getActivity()) && this.duration == activity.getDuration() && this.time == activity.getTime());
 		}
 		return super.equals(obj);
 	}
