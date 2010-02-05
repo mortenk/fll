@@ -5,7 +5,7 @@ no.fll.activity.ActivityGrid = Ext.extend(no.fll.web.FllGrid, {
 		this.autoHeight = true;	
 		this.columns = [{
 			header: "Id", 
-			width: 20, 
+			width: 30, 
 			sortable: true, 
 			dataIndex: 'id'
 		},{
@@ -58,9 +58,23 @@ no.fll.activity.ActivityGrid = Ext.extend(no.fll.web.FllGrid, {
             iconCls: 'new',
             scope: this,
             handler: function() {
-        		this.store.add(new no.fll.activity.Activity({activity: 'Tøys', duration: 15}));
+        		this.store.add(new no.fll.activity.Activity({activity: this.getNextActivityName(), duration: 15}));
             }
         }];
 		no.fll.activity.ActivityGrid.superclass.constructor.call(this, config);
+	}, 
+	getNextActivityName: function() {
+		if (this.activity == undefined) {
+			this.activity = 1;
+			return 'Ringside';
+		} else if (this.activity == 1) {
+			this.activity++;
+			return 'Teori';
+		} else if (this.activity == 2) {
+			this.activity++;
+			return 'Teknisk';
+		} else {
+			return 'Aktivitet ' + this.activity++;
+		}
 	}
 });

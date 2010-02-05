@@ -1,0 +1,27 @@
+<html>
+<head>
+	<title>FLL</title>
+
+	<STYLE TYPE="text/css">
+	     H4 {page-break-before: always}
+	</STYLE> 
+</head>
+
+<body>
+Kjøreplan
+#foreach($team in $plan.getSortedTeams())
+	<H4>$team</H4>
+	#foreach($plan in $plan.getPlanByTeamName($team))
+		<pre>$plan.time	$plan.activity</pre>
+	#end
+#end
+
+#foreach($activity in $plan.getSortedActivities())
+	<H4>$activity</H4>
+	#foreach($plan in $plan.getPlanByActivity($activity))
+		<pre>$plan.time	$plan.team</pre>
+	#end
+#end
+
+</body>
+</html>

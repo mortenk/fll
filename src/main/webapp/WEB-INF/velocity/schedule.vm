@@ -1,0 +1,10 @@
+<html>
+<head><title>FLL</title></head>
+<body>
+<H4>Kjøreplan</H4>
+#foreach($item in $schedule)
+	<pre>${item.time}	${item.team1.name}	${item.team2.name}</pre>
+#end
+
+</body>
+</html>

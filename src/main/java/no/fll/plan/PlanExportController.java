@@ -23,7 +23,7 @@ public class PlanExportController {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("plan");
         List<Plan> plan = planService.getPlan().getObjectsToConvertToRecords();
-        mav.addObject("plan", plan);
+        mav.addObject("plan", new PlanPrintingValueObject(plan));
         mav.addObject("teams", planMapByTeams(plan));
         return mav;
     }
