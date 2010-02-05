@@ -1,8 +1,6 @@
 Ext.namespace("no.fll.web");
 no.fll.web.FllGrid = Ext.extend(Ext.grid.EditorGridPanel, {
     constructor: function(config) {
-		this.autoWidth = true;
-		this.autoHeight = true;
 		this.tbar = this.tbar ? this.tbar : [];
         this.tbar.push([{
             text: 'Lagre',

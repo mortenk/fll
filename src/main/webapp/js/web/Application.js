@@ -12,6 +12,7 @@ no.fll.web.Application = Ext.extend(Ext.Panel, {
             enableTabScroll:true,
             activeTab:0,
             defaults: {
+        		autoScroll:true,
                 closable:false
             }, 
             items: [
