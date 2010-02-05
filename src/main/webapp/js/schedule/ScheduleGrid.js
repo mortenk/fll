@@ -52,6 +52,15 @@ no.fll.schedule.ScheduleGrid = Ext.extend(no.fll.web.FllGrid, {
         	}),
             writer: new Ext.data.JsonWriter({})
         });
+		this.tbar = [{
+            text: 'Skriv ut...',
+            tooltip: 'Åpner rapport for utkrift',
+            iconCls: 'print',
+            scope: this,
+            handler: function() {
+        		window.open('/schedule.do', 'fll-schedule');
+            }
+		}];
 		no.fll.schedule.ScheduleGrid.superclass.constructor.call(this, config);
 	},
 	preEditValue: function(r, field) {

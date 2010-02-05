@@ -56,6 +56,15 @@ no.fll.plan.PlanGrid = Ext.extend(no.fll.web.FllGrid, {
         });
         this.view = new Ext.grid.GroupingView({
         });
+		this.tbar = [{
+            text: 'Skriv ut...',
+            tooltip: 'Åpner rapport for utkrift',
+            iconCls: 'print',
+            scope: this,
+            handler: function() {
+        		window.open('/plan.do', 'fll-plan');
+            }
+		}];
 		no.fll.plan.PlanGrid.superclass.constructor.call(this, config);
 	}
 });
