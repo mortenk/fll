@@ -15,6 +15,9 @@ ScheduleService.getSchedule = function(callback) {
 ScheduleService.createSchedule = function(obj, callback) {
 	callback.callback(ScheduleService.dummyData);
 };
+ScheduleService.updateSchedule = function(obj, callback) {
+	callback.callback(ScheduleService.dummyData);
+};
 ScheduleService.deleteSchedule = function(obj, callback) {
 	callback.callback(ScheduleService.dummyData);
 };
