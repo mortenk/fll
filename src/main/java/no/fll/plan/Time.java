@@ -1,20 +1,20 @@
 package no.fll.plan;
 
 
+
 public class Time {
 
 	private int hour;
 	private int min;
 	
-	public Time(int minutes) {
-		hour = minutes / 60;
-		min = minutes % 60;
+	public Time(int hour, int min) {
+		super();
+		this.hour = hour;
+		this.min = min;
 	}
 
-	public Time(String time) {
-		String[] s = time.split(":");
-		hour = Integer.parseInt(s[0]);
-		min = Integer.parseInt(s[1]);
+	public Time(int minutes) {
+		this(minutes / 60, minutes % 60);
 	}
 
 	public int getHour() {
@@ -37,5 +37,30 @@ public class Time {
 	@Override
 	public String toString() {
 		return (hour < 10 ? "0" : "") + hour + ":" + (min < 10 ? "0" : "") + min;
+	}
+
+	public static Time parseTime(String time) {
+		String[] s = time.split(":");
+		if (s.length != 2) {
+			throw new IllegalArgumentException("Time must be in the format hh:mm");
+		}
+		try {
+			int hour = Integer.parseInt(s[0]);
+			int min = Integer.parseInt(s[1]);
+			return new Time(hour, min);
+		}
+		catch (NumberFormatException ex) {
+			throw new IllegalArgumentException("Time must be in the format hh:mm");
+		}
+	}
+
+	public static boolean isTime(String time) {
+		try {
+			parseTime(time);
+			return true;
+		}
+		catch (IllegalArgumentException ex) {
+			return false;
+		}
 	}
 }
