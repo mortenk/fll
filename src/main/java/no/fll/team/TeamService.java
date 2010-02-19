@@ -17,8 +17,13 @@ public class TeamService {
 	}
 
 	public JsonReaderResponse<Team> createTeam(List<Team> activities) {
-		hibernateTemplate.saveOrUpdateAll(activities);
-		return new JsonReaderResponse(activities);
+		try {
+			hibernateTemplate.saveOrUpdateAll(activities);
+			return new JsonReaderResponse(activities);
+		}
+		catch (RuntimeException ex) {
+			return new JsonReaderResponse<Team>();
+		}
 	}
 
 	public JsonReaderResponse<Team> updateTeam(List<Team> oldValues, List<Team> newValues) {

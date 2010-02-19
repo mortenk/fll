@@ -5,15 +5,20 @@ no.fll.team.TeamGrid = Ext.extend(no.fll.web.FllGrid, {
 			header: "Id", 
 			width: 30, 
 			sortable: true, 
+			dataIndex: 'id'
+		},{
+			header: "Nummer", 
+			width: 50, 
+			sortable: true, 
 			editor: new Ext.form.NumberField({
                 allowBlank: false,
                 allowDecimals: false,
                 allowNegative: false
             }),
-			dataIndex: 'id'
+			dataIndex: 'number'
 		},{
 			header: "Navn", 
-			width: 80, 
+			width: 120, 
 			sortable: true, 
 			editor: new Ext.form.TextField({
                 allowBlank: false
@@ -27,17 +32,17 @@ no.fll.team.TeamGrid = Ext.extend(no.fll.web.FllGrid, {
             iconCls: 'new',
             scope: this,
             handler: function() {
-        		var id = this.getNextId();
-        		var name = "Lag " + id;
-        		this.store.add(new no.fll.team.Team({id: id, name: name}));
+        		var number = this.getNextNumber();
+        		var name = "Lag " + number;
+        		this.store.add(new no.fll.team.Team({number: number, name: name}));
             }
         }];
 		no.fll.team.TeamGrid.superclass.constructor.call(this, config);
 	},
-	getNextId: function() {
-		var id = 1;
-		while (this.store.findExact('id', id) != -1)
-			id++;
-		return id;
+	getNextNumber: function() {
+		var number = 1;
+		while (this.store.findExact('number', number) != -1)
+			number++;
+		return number;
 	}
 });
