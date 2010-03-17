@@ -14,12 +14,12 @@ public class ActivityService {
 	private HibernateTemplate hibernateTemplate;
 	
 	public JsonReaderResponse<Activity> getActivities() {
-		return new JsonReaderResponse(hibernateTemplate.loadAll(Activity.class));
+		return new JsonReaderResponse<Activity>(hibernateTemplate.loadAll(Activity.class));
 	}
 
 	public JsonReaderResponse<Activity> createActivity(List<Activity> activities) {
 		hibernateTemplate.saveOrUpdateAll(activities);
-		return new JsonReaderResponse(activities);
+		return new JsonReaderResponse<Activity>(activities);
 	}
 
 	public JsonReaderResponse<Activity> updateActivity(List<Activity> oldValues, List<Activity> newValues) {
@@ -28,6 +28,6 @@ public class ActivityService {
 
 	public JsonReaderResponse<Activity> deleteActivity(List<Activity> activities) {
 		hibernateTemplate.deleteAll(activities);
-		return new JsonReaderResponse(activities);
+		return new JsonReaderResponse<Activity>(activities);
 	}
 }

@@ -15,12 +15,12 @@ public class PlanService {
 	private HibernateTemplate hibernateTemplate;
 	
 	public JsonReaderResponse<Plan> getPlan() {
-		return new JsonReaderResponse(hibernateTemplate.loadAll(Plan.class));
+		return new JsonReaderResponse<Plan>(hibernateTemplate.loadAll(Plan.class));
 	}
 	
 	public JsonReaderResponse<Plan> createPlan(List<Plan> plan) {
 		hibernateTemplate.saveOrUpdateAll(plan);
-		return new JsonReaderResponse(plan);
+		return new JsonReaderResponse<Plan>(plan);
 	}
 
 	public JsonReaderResponse<Plan> updatePlan(List<Plan> oldPlan, List<Plan> newPlan) {
@@ -29,14 +29,14 @@ public class PlanService {
 
 	public JsonReaderResponse<Plan> deletePlan(List<Plan> plan) {
 		hibernateTemplate.deleteAll(plan);
-		return new JsonReaderResponse(plan);
+		return new JsonReaderResponse<Plan>(plan);
 	}
 
 	public JsonReaderResponse<Plan> generatePlan(String startTime, String endTime, int pitTime) {
 		List<Plan> plan = planFactory.generatePlan(startTime, endTime, pitTime);
 		if (plan != null)
-			return new JsonReaderResponse(plan);
-		return new JsonReaderResponse();
+			return new JsonReaderResponse<Plan>(plan);
+		return new JsonReaderResponse<Plan>();
 	}
 
 }

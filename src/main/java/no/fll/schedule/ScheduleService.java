@@ -20,12 +20,12 @@ public class ScheduleService {
 	private HibernateTemplate hibernateTemplate;
 	
 	public JsonReaderResponse<Schedule> getSchedule() {
-		return new JsonReaderResponse(hibernateTemplate.loadAll(Schedule.class));
+		return new JsonReaderResponse<Schedule>(hibernateTemplate.loadAll(Schedule.class));
 	}
 	
 	public JsonReaderResponse<Schedule> createSchedule(List<Schedule> schedules) {
 		hibernateTemplate.saveOrUpdateAll(schedules);
-		return new JsonReaderResponse(schedules);
+		return new JsonReaderResponse<Schedule>(schedules);
 	}
 
 	public JsonReaderResponse<Schedule> updateSchedule(List<Schedule> oldValues, List<Schedule> newValues) {
@@ -34,7 +34,7 @@ public class ScheduleService {
 
 	public JsonReaderResponse<Schedule> deleteSchedule(List<Schedule> schedules) {
 		hibernateTemplate.deleteAll(schedules);
-		return new JsonReaderResponse(schedules);
+		return new JsonReaderResponse<Schedule>(schedules);
 	}
 
 	public List<Schedule> generateSchedule(String startTime, int increment) {

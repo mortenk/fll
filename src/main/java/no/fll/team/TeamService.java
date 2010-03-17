@@ -13,13 +13,13 @@ public class TeamService {
 	private HibernateTemplate hibernateTemplate;
 	
 	public JsonReaderResponse<Team> getTeams() {
-		return new JsonReaderResponse(hibernateTemplate.loadAll(Team.class));
+		return new JsonReaderResponse<Team>(hibernateTemplate.loadAll(Team.class));
 	}
 
 	public JsonReaderResponse<Team> createTeam(List<Team> activities) {
 		try {
 			hibernateTemplate.saveOrUpdateAll(activities);
-			return new JsonReaderResponse(activities);
+			return new JsonReaderResponse<Team>(activities);
 		}
 		catch (RuntimeException ex) {
 			return new JsonReaderResponse<Team>();
@@ -32,7 +32,7 @@ public class TeamService {
 
 	public JsonReaderResponse<Team> deleteTeam(List<Team> activities) {
 		hibernateTemplate.deleteAll(activities);
-		return new JsonReaderResponse(activities);
+		return new JsonReaderResponse<Team>(activities);
 	}
 
 }
