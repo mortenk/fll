@@ -102,6 +102,7 @@
 	<properties>
 		<spring.version>3.0.1.RELEASE</spring.version>
 	</properties>
+
 	<build>
 		<sourceDirectory>${basedir}/src/main/java</sourceDirectory>
 		<plugins>
@@ -166,6 +167,7 @@
 			<url>http://opensource.kantega.no/nexus/content/groups/public/</url>
 		</pluginRepository>
 	</pluginRepositories>
+
 	<repositories>
 		<repository>
 			<id>simplericity</id>
@@ -176,5 +178,31 @@
 			<url>http://repository.jboss.com/maven2/</url>
 		</repository>
 	</repositories>
+
+	<scm>
+		<connection>http://github.com/mortenk/fll.git</connection>
+		<developerConnection>git@github.com:mortenk/fll.git</developerConnection>
+		<url>http://github.com/mortenk/fll/tree/master/src/</url>
+	</scm>
+
+	<developers>
+		<developer>
+			<name>Morten Knudsen</name>
+			<roles>
+				<role>Supreme ruler</role>
+				<role>Senior architect</role>
+				<role>Jedi knight</role>
+			</roles>
+			<timezone>1</timezone>
+			<email>goatbrain@gmail.com</email>
+		</developer>
+	</developers>
+
+	<licenses>
+		<license>
+			<name>GPL</name>
+			<url>http://www.gnu.org/licenses/gpl.txt</url>
+		</license>
+	</licenses>
 
 </project>
