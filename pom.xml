@@ -182,7 +182,7 @@
 	<scm>
 		<connection>http://github.com/mortenk/fll.git</connection>
 		<developerConnection>git@github.com:mortenk/fll.git</developerConnection>
-		<url>http://github.com/mortenk/fll/tree/master/src/</url>
+		<url>http://github.com/mortenk/fll</url>
 	</scm>
 
 	<developers>
