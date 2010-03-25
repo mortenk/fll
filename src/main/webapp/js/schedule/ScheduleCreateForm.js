@@ -6,7 +6,6 @@ no.fll.schedule.ScheduleCreateForm = Ext.extend(Ext.form.FormPanel, {
         this.bodyStyle = 'padding:5px 5px 0';
         this.width = 350;
         this.defaults = {width: 130};
-        this.defaultType = 'textfield';
         this.labelAlign = 'left';
         this.labelWidth = 80;
         this.frame = true;
@@ -17,10 +16,12 @@ no.fll.schedule.ScheduleCreateForm = Ext.extend(Ext.form.FormPanel, {
         	format: 'H:i',
         	value: '10:00'
         },{
-        	xtype: 'numberfield',
+        	xtype: 'spinnerfield',
         	fieldLabel: 'Rundetid',
         	name: 'duration',
-            value: 6,
+        	minValue: 1,
+        	maxValue: 59,
+        	value: 6,
             allowBlank: false,
             allowDecimals: false,
             allowNegative: false
