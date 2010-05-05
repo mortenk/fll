@@ -32,6 +32,7 @@ no.fll.web.Application = Ext.extend(Ext.Panel, {
 		        animate: true,
 		        activeOnTop: true
 		    },
+		    defaults : {anchor: '95%'},
 		    items : [
 		        new no.fll.schedule.ScheduleController().createForm(this.mainPanel),
 		        new no.fll.plan.PlanController().createForm(this.mainPanel)

@@ -4,8 +4,7 @@ no.fll.schedule.ScheduleCreateForm = Ext.extend(Ext.form.FormPanel, {
 
 		config = config || {};
         this.bodyStyle = 'padding:5px 5px 0';
-        this.width = 350;
-        this.defaults = {width: 130};
+        this.defaults = {anchor: '95%'};
         this.labelAlign = 'left';
         this.labelWidth = 80;
         this.frame = true;

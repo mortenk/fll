@@ -4,9 +4,7 @@ no.fll.plan.PlanCreateForm = Ext.extend(Ext.form.FormPanel, {
 
 		config = config || {};
         this.bodyStyle = 'padding:5px 5px 0';
-        this.width = 350;
-        this.defaults = {width: 80};
-        this.defaultType = 'textfield';
+        this.defaults = {anchor: '95%'};
         this.labelAlign = 'left';
         this.labelWidth = 120;
         this.frame = true;
