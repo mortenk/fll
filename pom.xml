@@ -145,7 +145,7 @@
 			<plugin>
 				<groupId>org.simplericity.jettyconsole</groupId>
 				<artifactId>jetty-console-maven-plugin</artifactId>
-				<version>1.31</version>
+				<version>1.35</version>
 				<executions>
 					<execution>
 						<goals>
@@ -167,7 +167,7 @@
 	<repositories>
 		<repository>
 			<id>simplericity</id>
-			<url>http://simplericity.org/repository/</url>
+			<url>http://opensource.kantega.no/nexus/content/groups/public/</url>
 		</repository>
 		<repository>
 			<id>jboss</id>
