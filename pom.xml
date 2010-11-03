@@ -95,7 +95,7 @@
 	</dependencies>
 
 	<properties>
-		<spring.version>3.0.4.RELEASE</spring.version>
+		<spring.version>3.0.5.RELEASE</spring.version>
 		<hibernate.version>3.6.0.Final</hibernate.version>
 	</properties>
 
