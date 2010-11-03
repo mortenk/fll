@@ -8,6 +8,7 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd">
 
 	<context:annotation-config />
+	<import resource="classpath:fll-ds.xml"/>
 	<import resource="classpath:fll-dao.xml"/>
 	<import resource="classpath:fll-web.xml"/>
 

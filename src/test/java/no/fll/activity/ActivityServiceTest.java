@@ -12,7 +12,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration({"/fll-dao.xml"})
+@ContextConfiguration({"/fll-ds.xml","/fll-dao.xml"})
 public class ActivityServiceTest {
 	@Autowired
 	private HibernateTemplate hibernateTemplate;

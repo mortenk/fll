@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans
-        xmlns="http://www.springframework.org/schema/beans"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xmlns:jdbc="http://www.springframework.org/schema/jdbc"
-        xmlns:tx="http://www.springframework.org/schema/tx"
-        xmlns:aop="http://www.springframework.org/schema/aop"
-        xsi:schemaLocation="
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
         http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd
         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
         http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
 
-	<jdbc:embedded-database id="dataSource"/>
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="org.hsqldb.jdbcDriver" />
+		<property name="url" value="jdbc:hsqldb:file:vps" />
+		<property name="username" value="sa" />
+		<property name="password" value="" />
+	</bean>
 
 	<tx:advice id="txAdvice" transaction-manager="transactionManager">
 		<!-- the transactional semantics... -->
@@ -24,13 +27,11 @@
 	</tx:advice>
 
 	<aop:config>
-		<aop:pointcut id="fooServiceOperation"
-			expression="execution(* no.fll.*.*Service.*(..))" />
+		<aop:pointcut id="fooServiceOperation" expression="execution(* no.fll.*.*Service.*(..))" />
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="fooServiceOperation" />
 	</aop:config>
 
-	<bean id="hibernateTemplate"
-		class="org.springframework.orm.hibernate3.HibernateTemplate">
+	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
@@ -38,16 +39,19 @@
 		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="packagesToScan">
-			<list><value>no.fll</value></list>
+			<list>
+				<value>no.fll</value>
+			</list>
 		</property>
 		<property name="hibernateProperties" ref="hibernateProperties" />
 	</bean>
 
-	<bean id="hibernateProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+	<bean id="hibernateProperties"
+		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
 		<property name="properties">
 			<props>
 				<prop key="hibernate.dialect">org.hibernate.dialect.HSQLDialect</prop>
-				<prop key="hibernate.hbm2ddl.auto">create-drop</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
 			</props>
 		</property>
 	</bean>
