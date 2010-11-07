@@ -1,10 +1,20 @@
 <html>
 <head><title>FLL</title></head>
 <body>
-<H4>Kjøreplan</H4>
+<table>
+<tr>
+<td>
+<img align="top" src="http://hjernekraft.org/App_Themes/Standard/images/logo.gif" class=".logo"/>
+</td>
+<td>
+<H1>Kjøreplan</H1>
+</td>
+<tr/>
 #foreach($item in $schedule)
-	<pre>${item.time}	${item.team1.name}	${item.team2.name}</pre>
+<tr>
+	<td>${item.time}</td><td>${item.team1.name}</td><td>${item.team2.name}</td>
+</tr>
 #end
-
+</table>
 </body>
 </html>
