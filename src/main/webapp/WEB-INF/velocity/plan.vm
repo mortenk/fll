@@ -10,8 +10,8 @@
 <body>
 #foreach($team in $plan.getSortedTeams())
 	<img src="http://hjernekraft.org/App_Themes/Standard/images/logo.gif" class="logo"/>
-	<H4>$team</H4>
-	#foreach($plan in $plan.getPlanByTeamName($team))
+	<H4>Lag $team.number: $team.name</H4>
+	#foreach($plan in $plan.getPlanByTeamName($team.name))
 		<pre>$plan.time	$plan.activity</pre>
 	#end
 #end
@@ -20,7 +20,7 @@
 	<img src="http://hjernekraft.org/App_Themes/Standard/images/logo.gif" class="logo"/>
 	<H4>$activity</H4>
 	#foreach($plan in $plan.getPlanByActivity($activity))
-		<pre>$plan.time	$plan.team</pre>
+		<pre>$plan.time	$plan.team.name</pre>
 	#end
 #end
 

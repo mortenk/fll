@@ -19,7 +19,7 @@ public class PlanExportController {
 	private PlanService planService;
 	
     @RequestMapping("/plan.do")
-    public ModelAndView helloWorld() {
+    public ModelAndView print() {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("plan");
         List<Plan> plan = planService.getPlan().getObjectsToConvertToRecords();
@@ -34,7 +34,7 @@ public class PlanExportController {
         	List<Plan> list = teams.get(p.getTeam());
         	if (list == null) {
         		list = new ArrayList<Plan>();
-        		teams.put(p.getTeam(), list);
+        		teams.put(p.getTeam().getName(), list);
         	}
         	list.add(p);
         }

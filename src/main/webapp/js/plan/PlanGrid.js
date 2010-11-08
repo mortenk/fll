@@ -1,6 +1,9 @@
 Ext.namespace("no.fll.plan");
 no.fll.plan.PlanGrid = Ext.extend(no.fll.web.FllGrid, {
     constructor: function(config) {
+		this.teamRenderer = function(value){
+			return value.name;
+		};
 		this.columns = [{
 			header: "Id", 
 			width: 30, 
@@ -16,7 +19,9 @@ no.fll.plan.PlanGrid = Ext.extend(no.fll.web.FllGrid, {
 		},{
 			header: "Lag", 
 			width: 80, 
-			dataIndex: 'team', 
+			sortable: true, 
+			dataIndex: 'team',
+			renderer: this.teamRenderer,
 			hidden: true
 		},{
 			header: "Aktivitet", 

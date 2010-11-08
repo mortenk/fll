@@ -5,6 +5,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import no.fll.team.Team;
+
 
 public class PlanPrintingValueObject {
 	private List<Plan> plans; 
@@ -16,7 +18,7 @@ public class PlanPrintingValueObject {
 	public List<Plan> getPlanByTeamName(String teamName) {
 		List<Plan> ret = new ArrayList<Plan>();
 		for (Plan plan : plans) {
-			if (teamName.equals(plan.getTeam())) {
+			if (teamName.equals(plan.getTeam().getName())) {
 				ret.add(plan);
 			}
 		}
@@ -45,14 +47,20 @@ public class PlanPrintingValueObject {
 		return ret;
 	}
 
-	public List<String> getSortedTeams() {
-		List<String> ret = new ArrayList<String>();
+	public List<Team> getSortedTeams() {
+		List<Team> ret = new ArrayList<Team>();
 		for (Plan plan : plans) {
 			if (!ret.contains(plan.getTeam())) {
 				ret.add(plan.getTeam());
 			}
 		}
-        Collections.sort(ret);
+        Collections.sort(ret, new Comparator<Team>() {
+
+			@Override
+			public int compare(Team t1, Team t2) {
+				return new Integer(t1.getNumber()).compareTo(t2.getNumber());
+			}
+        });
         return ret; 
 	}
 	public List<String> getSortedActivities() {

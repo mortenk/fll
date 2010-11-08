@@ -16,7 +16,7 @@ public class ScheduleExportController {
 	private ScheduleService scheduleService;
 	
     @RequestMapping("/schedule.do")
-    public ModelAndView helloWorld() {
+    public ModelAndView print() {
     	System.out.println("Exporting schedule");
         ModelAndView mav = new ModelAndView();
         mav.setViewName("schedule");
