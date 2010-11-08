@@ -38,9 +38,9 @@ no.fll.plan.PlanController = Ext.extend(Ext.Component, {
 
     createForm : function(mainPanel) {
     	this.mainPanel = mainPanel;
-		this.grid = new no.fll.plan.PlanGrid({title: 'Plan'});
+		this.grid = new no.fll.plan.PlanGrid({title: 'Timeplan'});
         this.mainPanel.add(this.grid);
-        var form = new no.fll.plan.PlanCreateForm({title: 'Opprett plan'});
+        var form = new no.fll.plan.PlanCreateForm({title: 'Opprett timeplan'});
         form.on('create-plan', this.createPlan.createDelegate(this));
         return form;
     }
