@@ -6,13 +6,13 @@
 <td>
 <img align="top" src="http://hjernekraft.org/App_Themes/Standard/images/logo.gif" class=".logo"/>
 </td>
-<td>
-<H1>Kjøreplan</H1>
+<td colspan="3">
+<H1>Robotkamper</H1>
 </td>
 <tr/>
 #foreach($item in $schedule)
 <tr>
-	<td>${item.time}</td><td>${item.team1.name}</td><td>${item.team2.name}</td>
+	<td>${item.time}</td><td align="right">${item.team1.number}</td><td>${item.team1.name}</td><td align="right">${item.team2.number}</td><td>${item.team2.name}</td>
 </tr>
 #end
 </table>
