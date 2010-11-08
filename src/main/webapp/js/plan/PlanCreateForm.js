@@ -13,7 +13,7 @@ no.fll.plan.PlanCreateForm = Ext.extend(Ext.form.FormPanel, {
         	fieldLabel: 'Starttid',
         	name: 'startTime',
         	format: 'H:i',
-        	value: '09:00'
+        	value: '08:30'
         },{
         	xtype: 'timefield',
         	fieldLabel: 'Sluttid',
