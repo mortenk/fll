@@ -126,12 +126,12 @@
 				<artifactId>maven-eclipse-plugin</artifactId>
 				<configuration>
 					<ajdtVersion>none</ajdtVersion>
+					<buildOutputDirectory>${basedir}/target/classes</buildOutputDirectory>
 				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.zeroturnaround</groupId>
 				<artifactId>javarebel-maven-plugin</artifactId>
-				<version>1.0.5</version>
 				<executions>
 					<execution>
 						<id>generate-rebel-xml</id>
