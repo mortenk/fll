@@ -32,6 +32,9 @@
 	<category name="org.springframework">
 		<priority value="WARN" />
 	</category>
+	<category name="org.apache.velocity">
+		<priority value="WARN" />
+	</category>
 	<category name="org.directwebremoting">
 		<priority value="WARN" />
 	</category>
