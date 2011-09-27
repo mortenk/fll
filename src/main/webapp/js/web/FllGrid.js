@@ -19,7 +19,18 @@ no.fll.web.FllGrid = Ext.extend(Ext.grid.EditorGridPanel, {
         		this.store.reload();
             }
         },{
-            text: 'Slett',
+            text: 'Slett valgt',
+            tooltip: 'Sletter valgt',
+            iconCls: 'delete',
+            scope: this,
+            handler: function() {
+            	var cell = this.selModel.getSelectedCell();
+            	if (cell) {
+            		this.store.removeAt(cell[0]);
+            	}
+            }
+        },{
+            text: 'Slett alt',
             tooltip: 'Sletter alt',
             iconCls: 'delete',
             scope: this,
