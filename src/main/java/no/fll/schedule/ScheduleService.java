@@ -43,7 +43,11 @@ public class ScheduleService {
 		List<Schedule> schedules = new ArrayList<Schedule>();
 		TimeIncrementor timeIncrementor = new TimeIncrementor(startTime, increment);
 		for (int i=0; i<teamList.size();) {
-			schedules.add(new Schedule(timeIncrementor.getNextValue(), teamList.get(i++), teamList.get(i++)));
+			Team team1 = teamList.get(i++);
+			Team team2 = null;
+			if (teamList.size() > i)
+				team2 = teamList.get(i++);
+			schedules.add(new Schedule(timeIncrementor.getNextValue(), team1, team2));
 		}
 		return schedules;
 	}

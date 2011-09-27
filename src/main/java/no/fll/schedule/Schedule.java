@@ -24,11 +24,11 @@ public class Schedule {
 	private String time;
 	
 	@ManyToOne
-    @JoinColumn(name="TEAM1_ID", nullable=false)
+    @JoinColumn(name="TEAM1_ID", nullable=true)
 	private Team team1;
 	
 	@ManyToOne
-    @JoinColumn(name="TEAM2_ID", nullable=false)
+    @JoinColumn(name="TEAM2_ID", nullable=true)
 	private Team team2;
 	
 	public Schedule() {	}

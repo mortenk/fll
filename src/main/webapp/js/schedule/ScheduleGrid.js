@@ -2,7 +2,11 @@ Ext.namespace("no.fll.schedule");
 no.fll.schedule.ScheduleGrid = Ext.extend(no.fll.web.FllGrid, {
     constructor: function(config) {
 		this.teamRenderer = function(value){
-			return value.name;
+			if (value) {
+				return value.name;
+			} else {
+				return "";
+			}
 		};
 		this.timeEditor = new Ext.form.TextField({
             allowBlank: false
@@ -65,7 +69,11 @@ no.fll.schedule.ScheduleGrid = Ext.extend(no.fll.web.FllGrid, {
 	},
 	preEditValue: function(r, field) {
 		if (field == 'team1' || field == 'team2') {
-			var value = r.data[field].name;
+			var record = r.data[field];
+			var value = "";
+			if (record){
+				value = record.name;
+			}
 		    return this.autoEncode && Ext.isString(value) ? Ext.util.Format.htmlDecode(value) : value;
 		} else {
 			return no.fll.schedule.ScheduleGrid.superclass.preEditValue(r, field);
