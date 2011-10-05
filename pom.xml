@@ -95,8 +95,8 @@
 	</dependencies>
 
 	<properties>
-		<spring.version>3.0.5.RELEASE</spring.version>
-		<hibernate.version>3.6.0.Final</hibernate.version>
+		<spring.version>3.0.6.RELEASE</spring.version>
+		<hibernate.version>3.6.7.Final</hibernate.version>
 	</properties>
 
 	<build>
@@ -131,7 +131,7 @@
 			</plugin>
 			<plugin>
 				<groupId>org.zeroturnaround</groupId>
-				<artifactId>javarebel-maven-plugin</artifactId>
+				<artifactId>jrebel-maven-plugin</artifactId>
 				<executions>
 					<execution>
 						<id>generate-rebel-xml</id>
