@@ -1,5 +1,11 @@
 <html>
-<head><title>FLL</title></head>
+<head>
+	<title>FLL</title>
+	<STYLE TYPE="text/css">
+	     .logo {page-break-before: always}
+	     td {padding: 1px 10px 1px 10px;}
+	</STYLE> 
+</head>
 <body>
 <table>
 <tr>
@@ -12,7 +18,11 @@
 <tr/>
 #foreach($item in $schedule)
 <tr>
-	<td>${item.time}</td><td align="right">${item.team1.number}</td><td>${item.team1.name}</td><td align="right">${item.team2.number}</td><td>${item.team2.name}</td>
+	<td>${item.time}</td>
+	<td align="right">${item.team1.number}</td>
+	<td>${item.team1.name}</td>
+	<td align="right">${item.team2.number}</td>
+	<td>${item.team2.name}</td>
 </tr>
 #end
 </table>

@@ -3,25 +3,66 @@
 	<title>FLL</title>
 
 	<STYLE TYPE="text/css">
-	     .logo {page-break-before: always}
+	     .logo {
+	     	page-break-before: always;
+	     	font-size: 40px;
+	     	font-weight: bold;
+	     	font-style:italic;
+	     	font-family: Arial;
+	     	background-color: blue !important;	
+	     	color: white;
+	     	width: 500px;
+	     	padding: 50px 50px 50px 50px;
+	     }
+	     .teamname {
+	     	font-size: 50px;
+	     	font-weight: bold;
+	     	font-family: Arial;
+	     	padding: 20px 20px 20px 20px;
+	     }
+	     .teamtable td {
+	     	padding: 3px 20px 3px 20px;
+	     	font-size: 20px;
+	     	font-family: Arial;
+	     }
+	     .activitytable td {
+	     	padding: 2px 20px 2px 20px;
+	     	font-size: 20px;
+	     	font-family: Arial;
+	     }
 	</STYLE> 
 </head>
 
 <body>
 #foreach($team in $plan.getSortedTeams())
-	<img src="http://hjernekraft.org/App_Themes/Standard/images/logo.gif" class="logo"/>
-	<H4>Lag $team.number: $team.name</H4>
+	<div class="logo">FIRST LEGO League 2011</div>
+	<div class="teamname">Lag $team.number: $team.name</div>
+	<table class="teamtable">
 	#foreach($plan in $plan.getPlanByTeamName($team.name))
-		<pre>$plan.time	$plan.activity</pre>
+		<tr>
+		<td>$plan.time</td><td>$plan.activity</td>
+		</tr>
 	#end
+		<tr>
+		<td>13:40</td><td>Mellomrunder</td>
+		</tr>
+		<tr>
+		<td>14:00</td><td>Finale</td>
+		</tr>
+	</table>
+	<img align="top" src="http://hjernekraft.org/uploads/bilder/Oppdrag/2011/Food%20Factor.jpg"/>
 #end
 
 #foreach($activity in $plan.getSortedActivities())
-	<img src="http://hjernekraft.org/App_Themes/Standard/images/logo.gif" class="logo"/>
-	<H4>$activity</H4>
+	<div class="logo">FIRST LEGO League 2011</div>
+	<div class="teamname">$activity</div>
+	<table class="activitytable">
 	#foreach($plan in $plan.getPlanByActivity($activity))
-		<pre>$plan.time	$plan.team.name</pre>
+		<tr>
+		<td>$plan.time</td><td>Lag $plan.team.number</td><td>$plan.team.name</td>
+		</tr>
 	#end
+	</table>
 #end
 
 </body>

@@ -74,7 +74,7 @@ no.fll.activity.ActivityGrid = Ext.extend(no.fll.web.FllGrid, {
 	getNextActivity: function() {
 		if (this.activity == undefined) {
 			this.activity = 1;
-			return new no.fll.activity.Activity({activity: 'Ringside', duration: 6, time: 'Auto'});
+			return new no.fll.activity.Activity({activity: 'Robotkamper', duration: 6, time: 'Auto'});
 		} else if (this.activity == 1) {
 			this.activity++;
 			return new no.fll.activity.Activity({activity: 'Pit', duration: 10, time: 'Auto'});

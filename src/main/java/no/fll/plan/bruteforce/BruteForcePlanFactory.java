@@ -33,9 +33,9 @@ public class BruteForcePlanFactory implements PlanFactory {
 		Activity ringside = null;
 		Activity pit = null;
 		for (Activity activity : activities) {
-			if (activity.getActivity().toLowerCase().contains("ring")) {
+			if (activity.getActivity().equals("Robotkamper")) {
 				ringside = activity;
-			} else if (activity.getActivity().toLowerCase().contains("pit")) {
+			} else if (activity.getActivity().equals("Pit")) {
 				pit = activity;
 			}
 		}
@@ -46,17 +46,20 @@ public class BruteForcePlanFactory implements PlanFactory {
 				Time.parseTime(startTime).getTotalMinutes(), minutes,
 				schedules, ringside, pit);
 		for (Activity activity : activities) {
-			ActivitySchedule activitySchedule = new ActivitySchedule(activity);
-			if (activity.getTime().equals("Auto")) {
-				boolean rc = set_activity(0, minutes, teams, activitySchedule);
-				if (rc == false)
-					return null;
-			} else if (Time.isTime(activity.getTime())) {
+			if (Time.isTime(activity.getTime())) {
 				int time = Time.parseTime(activity.getTime()).getTotalMinutes()
 						- Time.parseTime(startTime).getTotalMinutes();
 				for (TeamSchedule team : teams) {
 					team.set(time, activity.getDuration(), activity.getId());
 				}
+			}
+		}
+		for (Activity activity : activities) {
+			ActivitySchedule activitySchedule = new ActivitySchedule(activity);
+			if (activity.getTime().equals("Auto")) {
+				boolean rc = set_activity(0, minutes, teams, activitySchedule);
+				if (rc == false)
+					return null;
 			}
 		}
 
