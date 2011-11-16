@@ -17,6 +17,7 @@
 
 	<bean class="no.fll.schedule.RandomScheduleFactory"/>
 	<bean class="no.fll.plan.bruteforce.BruteForcePlanFactory"/>
+	<bean class="no.fll.dao.HibernateCrudDAO"/>
 	
 	<bean class="no.fll.activity.ActivityService" autowire="byType">
         <dwr:remote javascript="ActivityService" />
