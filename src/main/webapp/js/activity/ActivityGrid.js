@@ -35,31 +35,7 @@ no.fll.activity.ActivityGrid = Ext.extend(no.fll.web.FllGrid, {
             }),
 			dataIndex: 'time'
 		}];
-        this.store = new Ext.data.Store({
-        	autoSave: false,
-            autoLoad: true,
-            proxy: new Ext.ux.data.DwrProxy({
-    	 		apiActionToHandlerMap : {
-    	 			read : {
-    	  				dwrFunction : ActivityService.getActivities
-    	 			},
-    	 			create : {
-    	 				dwrFunction : ActivityService.createActivity
-    	 			}, 
-    	 			update : {
-    	 				dwrFunction : ActivityService.updateActivity
-    	 			}, 
-    	 			destroy : {
-    	 				dwrFunction : ActivityService.deleteActivity
-    	 			}
-    	 		}
-            }),
-        	reader: new Ext.data.JsonReader({
-        		root : 'objectsToConvertToRecords',
-        		fields: no.fll.activity.Activity
-        	}),
-            writer: new Ext.data.JsonWriter({})
-        });
+        this.store = new no.fll.activity.ActivityStore();
         this.tbar = [{
             text: 'Ny',
             tooltip: 'Ny aktivitet',

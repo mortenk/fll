@@ -40,7 +40,7 @@
 	<table class="teamtable">
 	#foreach($plan in $plan.getPlanByTeamName($team.name))
 		<tr>
-		<td>$plan.time</td><td>$plan.activity</td>
+		<td>$plan.time</td><td>$plan.activity.activity</td>
 		</tr>
 	#end
 	</table>
@@ -49,9 +49,9 @@
 
 #foreach($activity in $plan.getSortedActivities())
 	<div class="logo">FIRST LEGO League 2011</div>
-	<div class="teamname">$activity</div>
+	<div class="teamname">$activity.activity</div>
 	<table class="activitytable">
-	#foreach($plan in $plan.getPlanByActivity($activity))
+	#foreach($plan in $plan.getPlanByActivity($activity.activity))
 		<tr>
 		<td>$plan.time</td><td>Lag $plan.team.number</td><td>$plan.team.name</td>
 		</tr>

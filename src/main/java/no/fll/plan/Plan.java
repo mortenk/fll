@@ -9,6 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import no.fll.activity.Activity;
 import no.fll.team.Team;
 
 @Entity
@@ -27,13 +28,14 @@ public class Plan {
     @JoinColumn(name="TEAM_ID", nullable=false)
 	private Team team;
 
-	@Column(name = "ACTIVITY")
-	private String activity;
+	@ManyToOne
+    @JoinColumn(name="ACTIVITY_ID", nullable=false)
+	private Activity activity;
 
 	
 	public Plan() { }
 	
-	public Plan(String time, Team team, String activity) {
+	public Plan(String time, Team team, Activity activity) {
 		super();
 		this.time = time;
 		this.team = team;
@@ -64,11 +66,11 @@ public class Plan {
 		this.team = team;
 	}
 
-	public String getActivity() {
+	public Activity getActivity() {
 		return activity;
 	}
 
-	public void setActivity(String activity) {
+	public void setActivity(Activity activity) {
 		this.activity = activity;
 	}
 }

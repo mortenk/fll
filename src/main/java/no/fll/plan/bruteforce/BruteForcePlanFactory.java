@@ -70,8 +70,7 @@ public class BruteForcePlanFactory implements PlanFactory {
 			for (int i = 0; i < minutes; i++) {
 				if (team.getActivity(i) != last && last != 0) {
 					Plan plan = new Plan(Time.parseTime(startTime).to_time(
-							start), team.getTeam(), activities.get(last - 1)
-							.getActivity());
+							start), team.getTeam(), activities.get(last - 1));
 					plans.add(plan);
 				}
 				if (team.getActivity(i) != last) {
@@ -81,7 +80,7 @@ public class BruteForcePlanFactory implements PlanFactory {
 			}
 			if (last != 0) {
 				Plan plan = new Plan(Time.parseTime(startTime).to_time(start),
-						team.getTeam(), activities.get(last - 1).getActivity());
+						team.getTeam(), activities.get(last - 1));
 				plans.add(plan);
 			}
 		}

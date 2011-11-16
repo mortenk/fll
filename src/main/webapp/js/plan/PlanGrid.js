@@ -4,6 +4,19 @@ no.fll.plan.PlanGrid = Ext.extend(no.fll.web.FllGrid, {
 		this.teamRenderer = function(value){
 			return value.name;
 		};
+		this.activityRenderer = function(value){
+			return value.activity;
+		};
+		this.activityEditor = new Ext.form.ComboBox({
+            typeAhead: true,
+            triggerAction: 'all',
+            // transform the data already specified in html
+            lazyRender: true,
+            listClass: 'x-combo-list-small',
+            valueField: 'id',
+            displayField: 'activity',
+            store : new no.fll.activity.ActivityStore()
+        });
 		this.columns = [{
 			header: "Id", 
 			width: 30, 
@@ -27,9 +40,8 @@ no.fll.plan.PlanGrid = Ext.extend(no.fll.web.FllGrid, {
 			header: "Aktivitet", 
 			width: 80, 
 			sortable: true, 
-			editor: new Ext.form.TextField({
-	            allowBlank: false
-	        }),
+	        renderer: this.activityRenderer,
+	        editor: this.activityEditor,
 			dataIndex: 'activity'
 		}];
         this.store = new Ext.data.GroupingStore({
@@ -71,5 +83,27 @@ no.fll.plan.PlanGrid = Ext.extend(no.fll.web.FllGrid, {
             }
 		}];
 		no.fll.plan.PlanGrid.superclass.constructor.call(this, config);
+	},
+	preEditValue: function(r, field) {
+		if (field == 'activity') {
+			var record = r.data[field];
+			var value = "";
+			if (record){
+				value = record.activity;
+			}
+		    return this.autoEncode && Ext.isString(value) ? Ext.util.Format.htmlDecode(value) : value;
+		} else {
+			return no.fll.plan.PlanGrid.superclass.preEditValue(r, field);
+		}
+	},
+	postEditValue : function(value, originalValue, r, field){
+		if (field == 'activity') {
+			var store = this.activityEditor.store;
+			var idx = store.findExact('id', value);
+			var rec = store.getAt(idx);
+			return rec.data;
+		} else {
+			return no.fll.plan.PlanGrid.superclass.postEditValue(value, originalValue, r, field);
+		}
 	}
 });
