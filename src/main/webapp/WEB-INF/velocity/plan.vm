@@ -43,12 +43,6 @@
 		<td>$plan.time</td><td>$plan.activity</td>
 		</tr>
 	#end
-		<tr>
-		<td>13:40</td><td>Mellomrunder</td>
-		</tr>
-		<tr>
-		<td>14:00</td><td>Finale</td>
-		</tr>
 	</table>
 	<img align="top" src="http://hjernekraft.org/uploads/bilder/Oppdrag/2011/Food%20Factor.jpg"/>
 #end
