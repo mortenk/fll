@@ -19,10 +19,18 @@
 #foreach($item in $schedule)
 <tr>
 	<td>${item.time}</td>
+	#if ($item.team1)
 	<td align="right">${item.team1.number}</td>
 	<td>${item.team1.name}</td>
+	#else
+	<td/><td/>
+	#end
+	#if ($item.team2)
 	<td align="right">${item.team2.number}</td>
 	<td>${item.team2.name}</td>
+	#else
+	<td/><td/>
+	#end
 </tr>
 #end
 </table>
