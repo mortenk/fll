@@ -17,7 +17,7 @@ public class Activity {
 	private int id;
 	
 	@Column(name = "ACTIVITY")
-	private String activity;
+	private String name;
 
 	@Column(name = "DURATION")
 	private int duration;
@@ -27,10 +27,10 @@ public class Activity {
 
 	public Activity() {}
 	
-	public Activity(int id, String activity, int duration, String time) {
+	public Activity(int id, String name, int duration, String time) {
 		super();
 		this.id = id;
-		this.activity = activity;
+		this.name = name;
 		this.duration = duration;
 		this.time = time;
 	}
@@ -43,12 +43,12 @@ public class Activity {
 		this.id = id;
 	}
 
-	public String getActivity() {
-		return activity;
+	public String getName() {
+		return name;
 	}
 
-	public void setActivity(String activity) {
-		this.activity = activity;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public int getDuration() {
@@ -71,7 +71,7 @@ public class Activity {
 	public boolean equals(Object obj) {
 		if (obj instanceof Activity) {
 			Activity activity = (Activity) obj;
-			return (this.id == activity.getId() && this.activity.equals(activity.getActivity()) && this.duration == activity.getDuration() && this.time == activity.getTime());
+			return (this.id == activity.getId() && this.name.equals(activity.getName()) && this.duration == activity.getDuration() && this.time == activity.getTime());
 		}
 		return super.equals(obj);
 	}

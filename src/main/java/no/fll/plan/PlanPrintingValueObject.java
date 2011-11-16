@@ -29,7 +29,7 @@ public class PlanPrintingValueObject {
 	public List<Plan> getPlanByActivity(String activity) {
 		List<Plan> ret = new ArrayList<Plan>();
 		for (Plan plan : plans) {
-			if (activity.equals(plan.getActivity().getActivity())) {
+			if (activity.equals(plan.getActivity().getName())) {
 				ret.add(plan);
 			}
 		}

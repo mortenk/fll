@@ -15,7 +15,7 @@ no.fll.activity.ActivityGrid = Ext.extend(no.fll.web.FllGrid, {
 			editor: new Ext.form.TextField({
                 allowBlank: false
             }),
-			dataIndex: 'activity'
+			dataIndex: 'name'
 		},{
 			header: "Lengde", 
 			width: 80, 
@@ -50,18 +50,18 @@ no.fll.activity.ActivityGrid = Ext.extend(no.fll.web.FllGrid, {
 	getNextActivity: function() {
 		if (this.activity == undefined) {
 			this.activity = 1;
-			return new no.fll.activity.Activity({activity: 'Robotkamper', duration: 6, time: 'Auto'});
+			return new no.fll.activity.Activity({name: 'Robotkamper', duration: 6, time: 'Auto'});
 		} else if (this.activity == 1) {
 			this.activity++;
-			return new no.fll.activity.Activity({activity: 'Pit', duration: 10, time: 'Auto'});
+			return new no.fll.activity.Activity({name: 'Pit', duration: 10, time: 'Auto'});
 		} else if (this.activity == 2) {
 			this.activity++;
-			return new no.fll.activity.Activity({activity: 'Teori', duration: 15, time: 'Auto'});
+			return new no.fll.activity.Activity({name: 'Teori', duration: 15, time: 'Auto'});
 		} else if (this.activity == 3) {
 			this.activity++;
-			return new no.fll.activity.Activity({activity: 'Teknisk', duration: 15, time: 'Auto'});
+			return new no.fll.activity.Activity({name: 'Teknisk', duration: 15, time: 'Auto'});
 		} else {
-			return new no.fll.activity.Activity({activity: 'Aktivitet ' + this.activity++, duration: 15, time: 'Auto'});
+			return new no.fll.activity.Activity({name: 'Aktivitet ' + this.activity++, duration: 15, time: 'Auto'});
 		}
 	}
 });

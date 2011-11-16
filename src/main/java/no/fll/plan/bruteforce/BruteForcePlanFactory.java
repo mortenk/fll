@@ -33,9 +33,9 @@ public class BruteForcePlanFactory implements PlanFactory {
 		Activity ringside = null;
 		Activity pit = null;
 		for (Activity activity : activities) {
-			if (activity.getActivity().equals("Robotkamper")) {
+			if (activity.getName().equals("Robotkamper")) {
 				ringside = activity;
-			} else if (activity.getActivity().equals("Pit")) {
+			} else if (activity.getName().equals("Pit")) {
 				pit = activity;
 			}
 		}
@@ -70,7 +70,7 @@ public class BruteForcePlanFactory implements PlanFactory {
 			for (int i = 0; i < minutes; i++) {
 				if (team.getActivity(i) != last && last != 0) {
 					Plan plan = new Plan(Time.parseTime(startTime).to_time(
-							start), team.getTeam(), activities.get(last - 1));
+							start), team.getTeam(), getActivity(last, activities));
 					plans.add(plan);
 				}
 				if (team.getActivity(i) != last) {
@@ -80,7 +80,7 @@ public class BruteForcePlanFactory implements PlanFactory {
 			}
 			if (last != 0) {
 				Plan plan = new Plan(Time.parseTime(startTime).to_time(start),
-						team.getTeam(), activities.get(last - 1));
+						team.getTeam(), getActivity(last, activities));
 				plans.add(plan);
 			}
 		}
@@ -88,6 +88,14 @@ public class BruteForcePlanFactory implements PlanFactory {
 		return plans;
 	}
 
+	private Activity getActivity(int id, List<Activity> activities) {
+		for (Activity activity : activities) {
+			if (activity.getId() == id)
+				return activity;
+		}
+		throw new RuntimeException("Internal error, activity " + id + " not found");
+	}
+	
 	private Collection<TeamSchedule> createTeamList(int startTime,
 			int totalMinutes, List<Schedule> schedules, Activity ringside,
 			Activity pit) {

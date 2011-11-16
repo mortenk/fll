@@ -5,7 +5,7 @@ no.fll.plan.PlanGrid = Ext.extend(no.fll.web.FllGrid, {
 			return value.name;
 		};
 		this.activityRenderer = function(value){
-			return value.activity;
+			return value.name;
 		};
 		this.activityEditor = new Ext.form.ComboBox({
             typeAhead: true,
@@ -14,7 +14,7 @@ no.fll.plan.PlanGrid = Ext.extend(no.fll.web.FllGrid, {
             lazyRender: true,
             listClass: 'x-combo-list-small',
             valueField: 'id',
-            displayField: 'activity',
+            displayField: 'name',
             store : new no.fll.activity.ActivityStore()
         });
 		this.columns = [{
