@@ -15,7 +15,12 @@ public class TeamSchedule {
 		}
 	}
 
-	public boolean hasTime(int minute, int len) {
+	public boolean hasTime(int minute, int len, int slack) {
+		if (minute > slack) {
+			minute = minute - slack;
+			len = len + slack;
+		}
+		len = len + slack;
 		for (int i = minute; i < minute + len; i++) {
 			if (!(i < this.minutes.length)) {
 				return false;

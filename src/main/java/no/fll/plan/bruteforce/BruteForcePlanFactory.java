@@ -140,7 +140,7 @@ public class BruteForcePlanFactory implements PlanFactory {
 			return finished(teams, activity);
 		for (TeamSchedule team : teams) {
 			if (!team.hasDone(activity.getId())
-					&& team.hasTime(minute, activity.getDuration())
+					&& team.hasTime(minute, activity.getDuration(), 5)
 					&& activitySchedule.isFree(minute)) {
 				team.set(minute, activity.getDuration(), activity.getId());
 				activitySchedule.set(minute, team.getTeam());
