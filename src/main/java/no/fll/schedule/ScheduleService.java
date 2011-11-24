@@ -3,12 +3,12 @@ package no.fll.schedule;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.orm.hibernate3.HibernateTemplate;
-
+import no.fll.dao.CrudDAO;
 import no.fll.team.Team;
 import no.fll.team.TeamService;
 import no.fll.web.JsonReaderResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class ScheduleService {
 
@@ -17,24 +17,22 @@ public class ScheduleService {
 	@Autowired
 	private TeamService teamService;
 	@Autowired
-	private HibernateTemplate hibernateTemplate;
+	private CrudDAO dao;
 	
 	public JsonReaderResponse<Schedule> getSchedule() {
-		return new JsonReaderResponse<Schedule>(hibernateTemplate.loadAll(Schedule.class));
+		return dao.list(Schedule.class);
 	}
 	
 	public JsonReaderResponse<Schedule> createSchedule(List<Schedule> schedules) {
-		hibernateTemplate.saveOrUpdateAll(schedules);
-		return new JsonReaderResponse<Schedule>(schedules);
+		return dao.create(schedules);
 	}
 
 	public JsonReaderResponse<Schedule> updateSchedule(List<Schedule> oldValues, List<Schedule> newValues) {
-		return createSchedule(newValues);
+		return dao.update(oldValues, newValues);
 	}
 
 	public JsonReaderResponse<Schedule> deleteSchedule(List<Schedule> schedules) {
-		hibernateTemplate.deleteAll(schedules);
-		return new JsonReaderResponse<Schedule>(schedules);
+		return dao.deleteAll(schedules);
 	}
 
 	public List<Schedule> generateSchedule(String startTime, int increment) {
