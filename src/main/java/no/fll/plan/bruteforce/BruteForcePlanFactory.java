@@ -23,7 +23,7 @@ public class BruteForcePlanFactory implements PlanFactory {
 	private ScheduleService scheduleService;
 
 	@Override
-	public List<Plan> generatePlan(String startTime, String endTime, int pitTime) {
+	public List<Plan> generatePlan(String startTime, String endTime, int pitTime, int slack) {
 		List<Activity> activities = activityService.getActivities()
 				.getObjectsToConvertToRecords();
 		List<Schedule> schedules = scheduleService.getSchedule()
@@ -57,7 +57,7 @@ public class BruteForcePlanFactory implements PlanFactory {
 		for (Activity activity : activities) {
 			ActivitySchedule activitySchedule = new ActivitySchedule(activity);
 			if (activity.getTime().equals("Auto")) {
-				boolean rc = set_activity(0, minutes, teams, activitySchedule);
+				boolean rc = set_activity(0, minutes, teams, activitySchedule, slack);
 				if (rc == false)
 					return null;
 			}
@@ -134,13 +134,13 @@ public class BruteForcePlanFactory implements PlanFactory {
 	}
 
 	private boolean set_activity(int minute, int TOTAL_MINUTES,
-			Collection<TeamSchedule> teams, ActivitySchedule activitySchedule) {
+			Collection<TeamSchedule> teams, ActivitySchedule activitySchedule, int slack) {
 		Activity activity = activitySchedule.getActivity();
 		if (minute >= TOTAL_MINUTES)
 			return finished(teams, activity);
 		for (TeamSchedule team : teams) {
 			if (!team.hasDone(activity.getId())
-					&& team.hasTime(minute, activity.getDuration(), 5)
+					&& team.hasTime(minute, activity.getDuration(), slack)
 					&& activitySchedule.isFree(minute)) {
 				team.set(minute, activity.getDuration(), activity.getId());
 				activitySchedule.set(minute, team.getTeam());
@@ -148,7 +148,7 @@ public class BruteForcePlanFactory implements PlanFactory {
 					return true;
 				else if (minute < TOTAL_MINUTES - 1) {
 					boolean rc = set_activity(minute + activity.getDuration(),
-							TOTAL_MINUTES, teams, activitySchedule);
+							TOTAL_MINUTES, teams, activitySchedule, slack);
 					if (rc == false) {
 						team.clear(minute, activity.getDuration());
 						activitySchedule.clear(minute, team.getTeam());
@@ -160,7 +160,7 @@ public class BruteForcePlanFactory implements PlanFactory {
 		if (finished(teams, activity))
 			return true;
 		return set_activity(minute + activity.getDuration(), TOTAL_MINUTES,
-				teams, activitySchedule);
+				teams, activitySchedule, slack);
 	}
 
 	private boolean finished(Collection<TeamSchedule> teams, Activity activity) {

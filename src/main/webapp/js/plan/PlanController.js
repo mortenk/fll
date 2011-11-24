@@ -19,9 +19,9 @@ no.fll.plan.PlanController = Ext.extend(Ext.Component, {
         );
     },
 
-    createPlan : function(startTime, endTime, pitTime) {
+    createPlan : function(startTime, endTime, pitTime, slack) {
         this.mainPanel.setActiveTab(this.grid);
-        PlanService.generatePlan(startTime, endTime, pitTime, function(plan) {
+        PlanService.generatePlan(startTime, endTime, pitTime, slack, function(plan) {
         	if (plan.success) {
         		this.grid.store.loadData(plan, true);
         	} else {
