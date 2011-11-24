@@ -30,12 +30,23 @@ no.fll.plan.PlanCreateForm = Ext.extend(Ext.form.FormPanel, {
             allowBlank: false,
             allowDecimals: false,
             allowNegative: false
+        },{
+        	xtype: 'spinnerfield',
+            fieldLabel: "Minimum pause mellom aktiviteter",
+            name: 'slack',
+        	minValue: 1,
+        	maxValue: 59,
+            value: 5,
+            allowBlank: false,
+            allowDecimals: false,
+            allowNegative: false
         }];
         this.buttons = [{
         		text: 'Opprett plan',
 	            scope: this,
 	            handler: function() {
-	        		this.fireEvent('create-plan', this.getForm().getValues().startTime, this.getForm().getValues().endTime, this.getForm().getValues().pitTime);
+	        		this.fireEvent('create-plan', this.getForm().getValues().startTime, this.getForm().getValues().endTime, 
+	        				this.getForm().getValues().pitTime, this.getForm().getValues().slack);
 	            }
 	        }];
         no.fll.plan.PlanCreateForm.superclass.constructor.call(this, config);

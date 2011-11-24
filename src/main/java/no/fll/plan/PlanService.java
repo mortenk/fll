@@ -30,8 +30,8 @@ public class PlanService {
 		return dao.deleteAll(plan);
 	}
 
-	public JsonReaderResponse<Plan> generatePlan(String startTime, String endTime, int pitTime) {
-		List<Plan> plan = planFactory.generatePlan(startTime, endTime, pitTime);
+	public JsonReaderResponse<Plan> generatePlan(String startTime, String endTime, int pitTime, int slack) {
+		List<Plan> plan = planFactory.generatePlan(startTime, endTime, pitTime, slack);
 		if (plan != null)
 			return new JsonReaderResponse<Plan>(plan);
 		return new JsonReaderResponse<Plan>();
