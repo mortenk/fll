@@ -36,9 +36,9 @@ no.fll.schedule.ScheduleController = Ext.extend(Ext.Component, {
 
     createForm : function(mainPanel) {
     	this.mainPanel = mainPanel;
-		this.grid = new no.fll.schedule.ScheduleGrid({title: 'Kjøreplan'});
+		this.grid = new no.fll.schedule.ScheduleGrid({title: 'Robotkamper'});
         this.mainPanel.add(this.grid);
-        var form = new no.fll.schedule.ScheduleCreateForm({title: 'Opprett kjøreplan'});
+        var form = new no.fll.schedule.ScheduleCreateForm({title: 'Robotkamper'});
         form.on('create-schedule', this.createSchedule.createDelegate(this));
         form.on('clear', this.clearForm.createDelegate(this));
         return form;
