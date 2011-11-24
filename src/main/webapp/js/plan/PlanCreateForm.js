@@ -48,7 +48,13 @@ no.fll.plan.PlanCreateForm = Ext.extend(Ext.form.FormPanel, {
 	        		this.fireEvent('create-plan', this.getForm().getValues().startTime, this.getForm().getValues().endTime, 
 	        				this.getForm().getValues().pitTime, this.getForm().getValues().slack);
 	            }
-	        }];
+        },{
+	            text: 'Tilbakestill',
+	            scope: this,
+	            handler: function() {
+	        		this.fireEvent('clear', this.getForm());
+	            }
+        }];
         no.fll.plan.PlanCreateForm.superclass.constructor.call(this, config);
 	}
 });

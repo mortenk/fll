@@ -15,7 +15,8 @@ no.fll.plan.PlanController = Ext.extend(Ext.Component, {
              * Fires when user clicks the create action on a the create plan form
              * @param {int} pitminutes Number of minutes in the pit before the ring
              */
-            'create-plan'
+            'create-plan',
+            'clear-form'
         );
     },
 
@@ -42,6 +43,7 @@ no.fll.plan.PlanController = Ext.extend(Ext.Component, {
         this.mainPanel.add(this.grid);
         var form = new no.fll.plan.PlanCreateForm({title: 'Opprett timeplan'});
         form.on('create-plan', this.createPlan.createDelegate(this));
+        form.on('clear', this.clearForm.createDelegate(this));
         return form;
     }
 });
