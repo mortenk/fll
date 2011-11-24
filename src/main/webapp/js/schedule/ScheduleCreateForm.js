@@ -15,7 +15,7 @@ no.fll.schedule.ScheduleCreateForm = Ext.extend(Ext.form.FormPanel, {
         	format: 'H:i',
         	value: '10:00'
         },{
-        	xtype: 'numberfield',
+        	xtype: 'spinnerfield',
         	fieldLabel: 'Rundetid',
         	name: 'duration',
         	minValue: 1,

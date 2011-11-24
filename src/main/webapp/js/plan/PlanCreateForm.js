@@ -21,7 +21,7 @@ no.fll.plan.PlanCreateForm = Ext.extend(Ext.form.FormPanel, {
         	format: 'H:i',
         	value: '14:00'
         },{
-        	xtype: 'numberfield',
+        	xtype: 'spinnerfield',
             fieldLabel: "Tid i pit før kjøring",
             name: 'pitTime',
         	minValue: 1,
@@ -31,7 +31,7 @@ no.fll.plan.PlanCreateForm = Ext.extend(Ext.form.FormPanel, {
             allowDecimals: false,
             allowNegative: false
         },{
-        	xtype: 'numberfield',
+        	xtype: 'spinnerfield',
             fieldLabel: "Minimum pause mellom aktiviteter",
             name: 'slack',
         	minValue: 1,
