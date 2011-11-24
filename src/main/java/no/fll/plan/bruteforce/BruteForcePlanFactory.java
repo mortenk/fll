@@ -137,7 +137,7 @@ public class BruteForcePlanFactory implements PlanFactory {
 			Collection<TeamSchedule> teams, ActivitySchedule activitySchedule, int slack) {
 		Activity activity = activitySchedule.getActivity();
 		if (minute >= TOTAL_MINUTES)
-			return finished(teams, activity);
+			throw new RuntimeException("Umulig å lage plan, endre dine parametre");
 		for (TeamSchedule team : teams) {
 			if (!team.hasDone(activity.getId())
 					&& team.hasTime(minute, activity.getDuration(), slack)
