@@ -14,6 +14,8 @@ public class Main {
 		if (configuration == null) {
 			return;
 		}
+		System.setProperty("java.naming.factory.initial", "org.mortbay.naming.InitialContextFactory");
+		System.setProperty("java.naming.factory.url.pkgs", "org.mortbay.naming");
 		createServer(configuration).start();
 	}
 
