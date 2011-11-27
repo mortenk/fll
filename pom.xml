@@ -41,16 +41,6 @@
 			<version>1.6.4</version>
 		</dependency>
 		<dependency>
-			<groupId>org.mortbay.jetty</groupId>
-			<artifactId>jetty</artifactId>
-			<version>6.1.22</version>
-		</dependency>
-		<dependency>
-			<groupId>org.mortbay.jetty</groupId>
-			<artifactId>jetty-naming</artifactId>
-			<version>6.1.22</version>
-		</dependency>
-		<dependency>
 			<groupId>commons-dbcp</groupId>
 			<artifactId>commons-dbcp</artifactId>
 			<version>1.4</version>
@@ -158,40 +148,16 @@
 				</executions>
 			</plugin>
 			<plugin>
-				<groupId>org.simplericity.jettyconsole</groupId>
-				<artifactId>jetty-console-maven-plugin</artifactId>
-				<version>1.35</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>createconsole</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
 				<groupId>org.mortbay.jetty</groupId>
 				<artifactId>maven-jetty-plugin</artifactId>
 				<configuration>
 					<scanIntervalSeconds>0</scanIntervalSeconds>
-					
 				</configuration>
 			</plugin>
 		</plugins>
 	</build>
 
-	<pluginRepositories>
-		<pluginRepository>
-			<id>kos</id>
-			<url>http://opensource.kantega.no/nexus/content/groups/public/</url>
-		</pluginRepository>
-	</pluginRepositories>
-
 	<repositories>
-		<repository>
-			<id>simplericity</id>
-			<url>http://opensource.kantega.no/nexus/content/groups/public/</url>
-		</repository>
 		<repository>
 			<id>jboss</id>
 			<url>http://repository.jboss.org/nexus/content/groups/public</url>
