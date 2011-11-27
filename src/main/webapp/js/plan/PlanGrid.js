@@ -79,7 +79,7 @@ no.fll.plan.PlanGrid = Ext.extend(no.fll.web.FllGrid, {
             iconCls: 'print',
             scope: this,
             handler: function() {
-        		window.open('/plan.do', 'fll-plan');
+        		window.open('plan.do', 'fll-plan');
             }
 		}];
 		no.fll.plan.PlanGrid.superclass.constructor.call(this, config);

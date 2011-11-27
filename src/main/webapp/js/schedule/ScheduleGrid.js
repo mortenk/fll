@@ -62,7 +62,7 @@ no.fll.schedule.ScheduleGrid = Ext.extend(no.fll.web.FllGrid, {
             iconCls: 'print',
             scope: this,
             handler: function() {
-        		window.open('/schedule.do', 'fll-schedule');
+        		window.open('schedule.do', 'fll-schedule');
             }
 		}];
 		no.fll.schedule.ScheduleGrid.superclass.constructor.call(this, config);
